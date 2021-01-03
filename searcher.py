@@ -1,3 +1,7 @@
+import math
+import numpy as np
+from scipy import spatial
+
 from ranker import Ranker
 import utils
 
@@ -14,6 +18,7 @@ class Searcher:
         self._indexer = indexer
         self._ranker = Ranker()
         self._model = model
+        self.vector_dictionary = {}
 
     # DO NOT MODIFY THIS SIGNATURE
     # You can change the internal implementation as you see fit.
@@ -29,7 +34,7 @@ class Searcher:
             a list of tweet_ids where the first element is the most relavant 
             and the last is the least relevant result.
         """
-        query_as_list = self._parser.parse_sentence(query)
+        query_as_list = self._parser.parse_doc(query).term_doc_dictionary
 
         relevant_docs = self._relevant_docs_from_posting(query_as_list)
         n_relevant = len(relevant_docs)
@@ -45,9 +50,64 @@ class Searcher:
         :return: dictionary of relevant documents mapping doc_id to document frequency.
         """
         relevant_docs = {}
-        for term in query_as_list:
-            posting_list = self._indexer.get_term_posting_list(term)
-            for doc_id, tf in posting_list:
-                df = relevant_docs.get(doc_id, 0)
-                relevant_docs[doc_id] = df + 1
+        for term in query_as_list.keys():
+            tweet_arr = self._indexer.inverted_idx[term][1]
+            for tup in tweet_arr:
+                tweet_id = tup[1]
+                relevant_docs[tweet_id] = [0,0,0]
+                relevant_docs[tweet_id][0] = self.CossimVectors(query_as_list,self._indexer.inverted_idx[tweet_id][0])
+                relevant_docs[tweet_id][1] = self.Word2VecSim(query_as_list,self._indexer.postingVector[tweet_id])
+                print(relevant_docs[tweet_id][0])
+                print(relevant_docs[tweet_id][1])
+                relevant_docs[tweet_id][2] = (relevant_docs[tweet_id][0]+relevant_docs[tweet_id][1])/2
         return relevant_docs
+
+    def average_vector(self, dictionary):
+        vector = np.zeros((300,))  ##init matrix [0,0,0,0......0 ->300 time]
+        word_counter = 0
+
+        try:
+            for word in dictionary:
+                if word in self.vector_dictionary:
+                    vector = np.add(vector, self.vector_dictionary[word])
+                elif word in self.index_word_set:
+                    word_counter += 1
+                    self.vector_dictionary[word] = self.model[word]
+                    vector = np.add(vector, self.model[word])  ##adding vectors
+            if (word_counter > 0):
+                vector = np.divide(vector, word_counter)
+
+            else:
+                return np.zeros((300,))
+        except:
+            tmp = 0
+        return vector
+
+
+    def Word2VecSim(self,query,doc):
+
+        zero_vector = np.zeros((300,))
+        query_vector = self.average_vector(query)
+
+        if np.array_equal(zero_vector, doc):
+            return 0
+        else:
+            return 1 - spatial.distance.cosine(doc, query_vector)
+
+
+    def CossimVectors(self,query,doc):
+        return self.numer(query,doc)/self.denumer(query,doc)
+
+    def numer(self, query, doc):
+        num = 0
+        for term in query.keys():
+            num += query[term]*doc[term]
+        return num
+
+
+    def denumer(self, query , doc):
+        denum = 0
+        for term in doc.keys():
+            denum += doc[term]^2
+        denum = math.sqrt(denum)*math.sqrt(len(query))
+        return denum

@@ -1,10 +1,14 @@
+import time
+
 import pandas as pd
 from reader import ReadFile
 from configuration import ConfigClass
 from parser_module import Parse
 from indexer import Indexer
 from searcher import Searcher
+from gensim.models import KeyedVectors
 import os
+import utils
 
 
 # DO NOT CHANGE THE CLASS NAME
@@ -16,7 +20,7 @@ class SearchEngine:
         self._config = config
         self._parser = Parse()
         self._indexer = Indexer(config)
-        self._model = None
+        self.model =KeyedVectors.load_word2vec_format("GoogleNews-vectors-negative300.bin", binary=True, limit= 300000)
         self.num_doc=0
 
     # DO NOT MODIFY THIS SIGNATURE
@@ -33,6 +37,7 @@ class SearchEngine:
         documents_list = df.values.tolist()
         # Iterate over every document in the file
         number_of_documents = 0
+        start = time.time()
         for idx, document in enumerate(documents_list):
             # parse the document
             parsed_document = self._parser.parse_doc(document)
@@ -41,6 +46,13 @@ class SearchEngine:
             print(number_of_documents)
             # index the document data
             self._indexer.add_new_doc(parsed_document)
+
+        utils.save_obj(self._indexer.inverted_idx,"inverted_index")
+
+        utils.save_obj(self._indexer.postingVector,"postingVec")
+        end = time.time()
+        print("time took - "+str(end-start))
+
         print('Finished parsing and indexing.')
 
     # DO NOT MODIFY THIS SIGNATURE
@@ -77,8 +89,8 @@ class SearchEngine:
             a list of tweet_ids where the first element is the most relavant 
             and the last is the least relevant result.
         """
-        searcher = Searcher(self._parser, self._indexer, model=self._model)
-        return searcher.search(query)
+        searcher = Searcher(self._parser, self._indexer, model=self.model)
+        return searcher.search(query,100)
 
 def main():  # (corpus_path,output_path,stemming,queries,num_docs_to_retrieve):
     config = ConfigClass()
@@ -86,10 +98,17 @@ def main():  # (corpus_path,output_path,stemming,queries,num_docs_to_retrieve):
     #arr1=get_all_parquet_files("D:\Downloads\Data")
     arr2=get_all_parquet_files(os.getcwd())
     s=SearchEngine()
-    s.build_index_from_parquet(arr2[3])
-    for i in arr2:
-        s.build_index_from_parquet(i)
-    s.build_index_from_parquet("C:\\Users\\ofekr\\Search_Engine-master\\data\\benchmark_lbls_train.snappy.parquet")
+    #s.build_index_from_parquet(arr2[3])
+    # for i in arr2:
+    #     s.build_index_from_parquet(i)
+    s.build_index_from_parquet("D:\\Daniel\\School\\5th semester\\SEPC\\data\\benchmark_data_train.snappy.parquet")
+    print("please enter query to search :")
+    query = input()
+    start = time.time()
+    print(s.search(query))
+    end = time.time()
+    print("time took for query is "+str(end - start))
+
 def get_all_parquet_files(dir):
     arr=[]
     for r, d, f in os.walk(dir):

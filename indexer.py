@@ -1,3 +1,4 @@
+from document import Document_to_index
 # DO NOT MODIFY CLASS NAME
 class Indexer:
     # DO NOT MODIFY THIS SIGNATURE
@@ -6,7 +7,7 @@ class Indexer:
         self.inverted_idx = {}
         self.postingDict = {}
         self.config = config
-
+        self.doc_num=0
     # DO NOT MODIFY THIS SIGNATURE
     # You can change the internal implementation as you see fit.
     def add_new_doc(self, document):
@@ -16,22 +17,24 @@ class Indexer:
         :param document: a document need to be indexed.
         :return: -
         """
-
         document_dictionary = document.term_doc_dictionary
         # Go over each term in the doc
-        for term in document_dictionary.keys():
-            try:
-                # Update inverted index and posting
-                if term not in self.inverted_idx.keys():
-                    self.inverted_idx[term] = 1
-                    self.postingDict[term] = []
-                else:
-                    self.inverted_idx[term] += 1
+        max_tf = document.max_tf
+        if max_tf == 0:
+            return
 
-                self.postingDict[term].append((document.tweet_id, document_dictionary[term]))
-
-            except:
-                print('problem with the following key {}'.format(term[0]))
+        uniqueCounter = document.unique_words
+        #        tweet_length = len(document.full_text)
+        for term in document_dictionary.keys():  # in the inverted index we have list of tweet tuples with tf with pointer to appropriate file
+            if term not in self.inverted_idx.keys():
+                self.inverted_idx[term] = [[1, -1, document_dictionary[term]],[]]
+                self.inverted_idx[term][1].append((document_dictionary[term] / max_tf, document.tweet_id))
+            else:
+                self.inverted_idx[term][0][0] += 1
+                self.inverted_idx[term][0][2] += document_dictionary[term]
+                self.inverted_idx[term][1].append((document_dictionary[term] / max_tf, document.tweet_id))
+        self.postingDict[document.tweet_id]=(document.term_doc_dictionary,document.max_tf,document.hashtag_arr)
+        self.doc_num += 1
 
     # DO NOT MODIFY THIS SIGNATURE
     # You can change the internal implementation as you see fit.

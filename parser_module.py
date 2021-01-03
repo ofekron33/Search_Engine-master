@@ -5,13 +5,14 @@ from nltk.tokenize import word_tokenize
 from document import Document
 from math import log
 from document import Document_to_index
+import urllib3
 
 class Parse:
 
     def __init__(self):
         self.counter=0
         self.stop_words = frozenset(stopwords.words('english'))
-        self.added_stop_words=["I","The","rT","rt","http","https",'t.co',"","twitter.com","-","www","_","&amp","##","###","####","#####"]
+        self.added_stop_words=["I","The","rT","rt","http","https",'t.co',"twitter.com","-","www","_","&amp","##","###","####","#####"]
         self.check=0
         self.words = open(r'zif.txt').read().split()
         self.dictionay_word_cost = dict((k, log((i + 1) * log(len(self.words)))) for i, k in enumerate(self.words))
@@ -116,7 +117,7 @@ class Parse:
 
        # document = Document(tweet_id, tweet_date, full_text, url, retweet_text, retweet_url, quote_text,quote_url, term_dict, doc_length)
         document_to_index= Document_to_index(tweet_id,self.dic,max_tf,unique_words,doc_length,self.hashtag_arr)
-        print(str(self.counter)+",",self.hashtag_arr)
+        #print(str(self.counter)+",",self.hashtag_arr)
         return document_to_index
 
     def parse_numbers(self,index, next_index):

@@ -38,6 +38,7 @@ class SearchEngine:
             parsed_document = self._parser.parse_doc(document)
             number_of_documents += 1
             self.num_doc+=1
+            print(number_of_documents)
             # index the document data
             self._indexer.add_new_doc(parsed_document)
         print('Finished parsing and indexing.')
@@ -82,11 +83,13 @@ class SearchEngine:
 def main():  # (corpus_path,output_path,stemming,queries,num_docs_to_retrieve):
     config = ConfigClass()
     r = ReadFile(corpus_path=config.get__corpusPath())
-    arr1=get_all_parquet_files("D:\Downloads\Data")
+    #arr1=get_all_parquet_files("D:\Downloads\Data")
+    arr2=get_all_parquet_files(os.getcwd())
     s=SearchEngine()
-    for i in arr1:
+    s.build_index_from_parquet(arr2[3])
+    for i in arr2:
         s.build_index_from_parquet(i)
-
+    s.build_index_from_parquet("C:\\Users\\ofekr\\Search_Engine-master\\data\\benchmark_lbls_train.snappy.parquet")
 def get_all_parquet_files(dir):
     arr=[]
     for r, d, f in os.walk(dir):

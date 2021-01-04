@@ -1,5 +1,5 @@
 import numpy as np
-
+import  utils
 from document import Document_to_index
 # DO NOT MODIFY CLASS NAME
 from gensim.models import KeyedVectors
@@ -43,7 +43,7 @@ class Indexer:
                 self.inverted_idx[term][0][2] += document_dictionary[term]
                 self.inverted_idx[term][1].append((document_dictionary[term] / max_tf, document.tweet_id))
         self.inverted_idx[document.tweet_id] = (document.term_doc_dictionary, document.max_tf, document.hashtag_arr)
-        self.postingVector[document.tweet_id] = self.average_vector(document.term_doc_dictionary)
+  #      self.postingVector[document.tweet_id] = self.average_vector(document.term_doc_dictionary)
         self.doc_num += 1
 
 
@@ -77,8 +77,7 @@ class Indexer:
         Input:
             fn - file name of pickled index.
         """
-        raise NotImplementedError
-
+        utils.load_obj(fn)
     # DO NOT MODIFY THIS SIGNATURE
     # You can change the internal implementation as you see fit.
     def save_index(self, fn):
@@ -87,8 +86,7 @@ class Indexer:
         Input:
               fn - file name of pickled index.
         """
-
-        raise NotImplementedError
+        utils.save_obj(fn,"whatttt")
 
     # feel free to change the signature and/or implementation of this function 
     # or drop altogether.

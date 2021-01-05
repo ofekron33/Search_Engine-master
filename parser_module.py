@@ -105,6 +105,8 @@ class Parse:
         self.dic={}
         self.hashtag_arr=[]
         tweet_id = doc_as_list[0]
+        if(tweet_id=="1280939236150165516"):
+            tmp=3
         tweet_date = doc_as_list[1]
         full_text = doc_as_list[2]
         pattern = re.compile("(?P<url>https?://[^\s]+)", re.S)
@@ -132,7 +134,9 @@ class Parse:
                         tok_url = self.parse_url(url)
                         for term in tok_url:
                             if (term != "''" or term != "," and len(term) >= 1):
-                                self.enter_dic(term)
+                                if(term not in self.added_stop_words):
+                                    if (term not in self.stop_words):
+                                        self.enter_dic(term)
         retweet_text = doc_as_list[4]
         retweet_url = doc_as_list[5]
         if (retweet_url is not None) and ("http" in retweet_url):
@@ -142,17 +146,20 @@ class Parse:
                     if ("http" in url):
                         tok_url = self.parse_url(url)
                         for term in tok_url:
-                            self.enter_dic(term.lower())
+                            if (term not in self.added_stop_words):
+                                if (term not in self.stop_words):
+                                    self.enter_dic(term.lower())
         quote_text = doc_as_list[6]
         quote_url = doc_as_list[7]
         if (quote_url is not None) and ("http" in quote_url):
-
             #     tmp = quote_url.partition("https")[1] + quote_url.partition("https")[2]
             u = re.findall("(?P<url>https?://[^\s]+)", quote_url)
             for match in u:
                 tok_url = self.parse_url(match)
                 for term in tok_url:
-                    self.enter_dic(term.lower())
+                    if (term not in self.added_stop_words):
+                        if (term not in self.stop_words):
+                            self.enter_dic(term.lower())
         doc_length =len(full_text)
        # document = Document(tweet_id, tweet_date, full_text, url, retweet_text, retweet_url, quote_text,quote_url, term_dict, doc_length)
         document_to_index= Document_to_index(tweet_id,self.dic,max_tf,unique_words,doc_length,self.hashtag_arr)

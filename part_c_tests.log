@@ -1,109 +1,81 @@
-ERROR 2021-01-05 15:34:41,400: report_part_c.docx does not exist.
-INFO 2021-01-05 15:34:41,413: Successfully loaded benchmark labels data.
-INFO 2021-01-05 15:34:41,415: Successfully loaded queries data.
-INFO 2021-01-05 15:34:42,875: Successfully imported module search_engine_1.
-INFO 2021-01-05 15:34:43,009: loading projection weights from GoogleNews-vectors-negative300.bin
-DEBUG 2021-01-05 15:34:43,009: {'uri': 'GoogleNews-vectors-negative300.bin', 'mode': 'rb', 'buffering': -1, 'encoding': None, 'errors': None, 'newline': None, 'closefd': True, 'opener': None, 'ignore_ext': False, 'transport_params': None}
-INFO 2021-01-05 15:34:43,162: loaded (20000, 300) matrix from GoogleNews-vectors-negative300.bin
-INFO 2021-01-05 15:34:43,162: loading projection weights from GoogleNews-vectors-negative300.bin
-DEBUG 2021-01-05 15:34:43,162: {'uri': 'GoogleNews-vectors-negative300.bin', 'mode': 'rb', 'buffering': -1, 'encoding': None, 'errors': None, 'newline': None, 'closefd': True, 'opener': None, 'ignore_ext': False, 'transport_params': None}
-INFO 2021-01-05 15:34:45,211: loaded (300000, 300) matrix from GoogleNews-vectors-negative300.bin
-DEBUG 2021-01-05 15:34:46,845: Building the index in search_engine_1 for benchmark data took 1.5196497000000004 seconds.
-DEBUG 2021-01-05 15:34:46,846: search_engine_1 successfully returned 32 results for the query 'bioweapon'.
-DEBUG 2021-01-05 15:34:46,865: search_engine_1 successfully returned 816 results for query number 1.
-DEBUG 2021-01-05 15:34:46,978: search_engine_1 successfully returned 4953 results for query number 2.
-DEBUG 2021-01-05 15:34:47,104: search_engine_1 successfully returned 4985 results for query number 3.
-DEBUG 2021-01-05 15:34:47,126: search_engine_1 successfully returned 347 results for query number 4.
-DEBUG 2021-01-05 15:34:47,135: search_engine_1 successfully returned 313 results for query number 5.
-DEBUG 2021-01-05 15:34:47,248: search_engine_1 successfully returned 4903 results for query number 6.
-DEBUG 2021-01-05 15:34:47,273: search_engine_1 successfully returned 295 results for query number 7.
-DEBUG 2021-01-05 15:34:47,385: search_engine_1 successfully returned 4759 results for query number 8.
-DEBUG 2021-01-05 15:34:47,462: search_engine_1 successfully returned 2304 results for query number 9.
-DEBUG 2021-01-05 15:34:47,582: search_engine_1 successfully returned 5092 results for query number 10.
-DEBUG 2021-01-05 15:34:47,703: search_engine_1 successfully returned 4925 results for query number 11.
-DEBUG 2021-01-05 15:34:47,840: search_engine_1 successfully returned 5238 results for query number 12.
-DEBUG 2021-01-05 15:34:47,947: search_engine_1 successfully returned 4667 results for query number 13.
-DEBUG 2021-01-05 15:34:48,065: search_engine_1 successfully returned 4929 results for query number 14.
-DEBUG 2021-01-05 15:34:48,074: search_engine_1 successfully returned 50 results for query number 15.
-DEBUG 2021-01-05 15:34:48,089: search_engine_1 successfully returned 510 results for query number 16.
-DEBUG 2021-01-05 15:34:48,169: search_engine_1 successfully returned 2337 results for query number 17.
-DEBUG 2021-01-05 15:34:48,182: search_engine_1 successfully returned 298 results for query number 18.
-DEBUG 2021-01-05 15:34:48,228: search_engine_1 successfully returned 1704 results for query number 19.
-DEBUG 2021-01-05 15:34:48,271: search_engine_1 successfully returned 1787 results for query number 20.
-DEBUG 2021-01-05 15:34:48,382: search_engine_1 successfully returned 4835 results for query number 21.
-DEBUG 2021-01-05 15:34:48,515: search_engine_1 successfully returned 5230 results for query number 22.
-DEBUG 2021-01-05 15:34:48,651: search_engine_1 successfully returned 4970 results for query number 23.
-DEBUG 2021-01-05 15:34:48,791: search_engine_1 successfully returned 5446 results for query number 24.
-DEBUG 2021-01-05 15:34:48,911: search_engine_1 successfully returned 4919 results for query number 25.
-DEBUG 2021-01-05 15:34:48,963: search_engine_1 successfully returned 1467 results for query number 26.
-DEBUG 2021-01-05 15:34:49,023: search_engine_1 successfully returned 1781 results for query number 27.
-DEBUG 2021-01-05 15:34:49,139: search_engine_1 successfully returned 4788 results for query number 28.
-DEBUG 2021-01-05 15:34:49,258: search_engine_1 successfully returned 4725 results for query number 29.
-DEBUG 2021-01-05 15:34:49,316: search_engine_1 successfully returned 1650 results for query number 30.
-DEBUG 2021-01-05 15:34:49,335: search_engine_1 successfully returned 527 results for query number 31.
-DEBUG 2021-01-05 15:34:49,463: search_engine_1 successfully returned 4906 results for query number 32.
-DEBUG 2021-01-05 15:34:49,592: search_engine_1 successfully returned 4952 results for query number 33.
-DEBUG 2021-01-05 15:34:49,652: search_engine_1 successfully returned 1754 results for query number 34.
-DEBUG 2021-01-05 15:34:49,689: search_engine_1 successfully returned 1451 results for query number 35.
-DEBUG 2021-01-05 15:34:55,414: search_engine_1 results have MAP value of 0.6677372022402682.
-INFO 2021-01-05 15:34:55,416: Successfully imported module search_engine_2.
-INFO 2021-01-05 15:34:55,540: loading projection weights from GoogleNews-vectors-negative300.bin
-DEBUG 2021-01-05 15:34:55,541: {'uri': 'GoogleNews-vectors-negative300.bin', 'mode': 'rb', 'buffering': -1, 'encoding': None, 'errors': None, 'newline': None, 'closefd': True, 'opener': None, 'ignore_ext': False, 'transport_params': None}
-INFO 2021-01-05 15:34:55,665: loaded (20000, 300) matrix from GoogleNews-vectors-negative300.bin
-DEBUG 2021-01-05 15:34:57,205: Building the index in search_engine_2 for benchmark data took 1.3934187000000016 seconds.
-ERROR 2021-01-05 15:34:57,206: The following error occured while testing the module search_engine_2.
-ERROR 2021-01-05 15:34:57,206: 'module' object is not callable
+ERROR 2021-01-05 15:40:45,420: report_part_c.docx does not exist.
+INFO 2021-01-05 15:40:45,432: Successfully loaded benchmark labels data.
+INFO 2021-01-05 15:40:45,434: Successfully loaded queries data.
+INFO 2021-01-05 15:40:46,730: Successfully imported module search_engine_1.
+INFO 2021-01-05 15:40:46,847: loading projection weights from GoogleNews-vectors-negative300.bin
+DEBUG 2021-01-05 15:40:46,847: {'uri': 'GoogleNews-vectors-negative300.bin', 'mode': 'rb', 'buffering': -1, 'encoding': None, 'errors': None, 'newline': None, 'closefd': True, 'opener': None, 'ignore_ext': False, 'transport_params': None}
+INFO 2021-01-05 15:40:47,001: loaded (20000, 300) matrix from GoogleNews-vectors-negative300.bin
+INFO 2021-01-05 15:40:47,001: loading projection weights from GoogleNews-vectors-negative300.bin
+DEBUG 2021-01-05 15:40:47,001: {'uri': 'GoogleNews-vectors-negative300.bin', 'mode': 'rb', 'buffering': -1, 'encoding': None, 'errors': None, 'newline': None, 'closefd': True, 'opener': None, 'ignore_ext': False, 'transport_params': None}
+INFO 2021-01-05 15:40:49,050: loaded (300000, 300) matrix from GoogleNews-vectors-negative300.bin
+DEBUG 2021-01-05 15:40:50,581: Building the index in search_engine_1 for benchmark data took 1.4838221000000003 seconds.
+ERROR 2021-01-05 15:40:50,581: The following error occured while testing the module search_engine_1.
+ERROR 2021-01-05 15:40:50,581: load_precomputed_model() takes 1 positional argument but 2 were given
 Traceback (most recent call last):
-  File "C:/Users/ofekr/Search_Engine-master/test_part_c_students.py", line 87, in <module>
-    n_res, res = engine.search('bioweapon')
-  File "C:\Users\ofekr\Search_Engine-master\search_engine_2.py", line 89, in search
-    s = searcher(self._parser, self._indexer)
-TypeError: 'module' object is not callable
-INFO 2021-01-05 15:34:57,208: Successfully imported module search_engine_best.
-INFO 2021-01-05 15:34:57,348: loading projection weights from GoogleNews-vectors-negative300.bin
-DEBUG 2021-01-05 15:34:57,348: {'uri': 'GoogleNews-vectors-negative300.bin', 'mode': 'rb', 'buffering': -1, 'encoding': None, 'errors': None, 'newline': None, 'closefd': True, 'opener': None, 'ignore_ext': False, 'transport_params': None}
-INFO 2021-01-05 15:34:57,535: loaded (20000, 300) matrix from GoogleNews-vectors-negative300.bin
-INFO 2021-01-05 15:34:57,535: loading projection weights from GoogleNews-vectors-negative300.bin
-DEBUG 2021-01-05 15:34:57,535: {'uri': 'GoogleNews-vectors-negative300.bin', 'mode': 'rb', 'buffering': -1, 'encoding': None, 'errors': None, 'newline': None, 'closefd': True, 'opener': None, 'ignore_ext': False, 'transport_params': None}
-INFO 2021-01-05 15:34:59,692: loaded (300000, 300) matrix from GoogleNews-vectors-negative300.bin
-DEBUG 2021-01-05 15:35:01,249: Building the index in search_engine_best for benchmark data took 1.4768101999999992 seconds.
-DEBUG 2021-01-05 15:35:01,250: search_engine_best successfully returned 32 results for the query 'bioweapon'.
-DEBUG 2021-01-05 15:35:01,272: search_engine_best successfully returned 816 results for query number 1.
-DEBUG 2021-01-05 15:35:01,404: search_engine_best successfully returned 4953 results for query number 2.
-DEBUG 2021-01-05 15:35:01,530: search_engine_best successfully returned 4985 results for query number 3.
-DEBUG 2021-01-05 15:35:01,549: search_engine_best successfully returned 347 results for query number 4.
-DEBUG 2021-01-05 15:35:01,556: search_engine_best successfully returned 313 results for query number 5.
-DEBUG 2021-01-05 15:35:01,672: search_engine_best successfully returned 4903 results for query number 6.
-DEBUG 2021-01-05 15:35:01,698: search_engine_best successfully returned 295 results for query number 7.
-DEBUG 2021-01-05 15:35:01,815: search_engine_best successfully returned 4759 results for query number 8.
-DEBUG 2021-01-05 15:35:01,893: search_engine_best successfully returned 2304 results for query number 9.
-DEBUG 2021-01-05 15:35:02,015: search_engine_best successfully returned 5092 results for query number 10.
-DEBUG 2021-01-05 15:35:02,241: search_engine_best successfully returned 4925 results for query number 11.
-DEBUG 2021-01-05 15:35:02,383: search_engine_best successfully returned 5238 results for query number 12.
-DEBUG 2021-01-05 15:35:02,494: search_engine_best successfully returned 4667 results for query number 13.
-DEBUG 2021-01-05 15:35:02,614: search_engine_best successfully returned 4929 results for query number 14.
-DEBUG 2021-01-05 15:35:02,624: search_engine_best successfully returned 50 results for query number 15.
-DEBUG 2021-01-05 15:35:02,639: search_engine_best successfully returned 510 results for query number 16.
-DEBUG 2021-01-05 15:35:02,718: search_engine_best successfully returned 2337 results for query number 17.
-DEBUG 2021-01-05 15:35:02,736: search_engine_best successfully returned 298 results for query number 18.
-DEBUG 2021-01-05 15:35:02,777: search_engine_best successfully returned 1704 results for query number 19.
-DEBUG 2021-01-05 15:35:02,822: search_engine_best successfully returned 1787 results for query number 20.
-DEBUG 2021-01-05 15:35:02,933: search_engine_best successfully returned 4835 results for query number 21.
-DEBUG 2021-01-05 15:35:03,079: search_engine_best successfully returned 5230 results for query number 22.
-DEBUG 2021-01-05 15:35:03,209: search_engine_best successfully returned 4970 results for query number 23.
-DEBUG 2021-01-05 15:35:03,347: search_engine_best successfully returned 5446 results for query number 24.
-DEBUG 2021-01-05 15:35:03,466: search_engine_best successfully returned 4919 results for query number 25.
-DEBUG 2021-01-05 15:35:03,511: search_engine_best successfully returned 1467 results for query number 26.
-DEBUG 2021-01-05 15:35:03,569: search_engine_best successfully returned 1781 results for query number 27.
-DEBUG 2021-01-05 15:35:03,688: search_engine_best successfully returned 4788 results for query number 28.
-DEBUG 2021-01-05 15:35:03,809: search_engine_best successfully returned 4725 results for query number 29.
-DEBUG 2021-01-05 15:35:03,865: search_engine_best successfully returned 1650 results for query number 30.
-DEBUG 2021-01-05 15:35:03,881: search_engine_best successfully returned 527 results for query number 31.
-DEBUG 2021-01-05 15:35:04,011: search_engine_best successfully returned 4906 results for query number 32.
-DEBUG 2021-01-05 15:35:04,134: search_engine_best successfully returned 4952 results for query number 33.
-DEBUG 2021-01-05 15:35:04,197: search_engine_best successfully returned 1754 results for query number 34.
-DEBUG 2021-01-05 15:35:04,235: search_engine_best successfully returned 1451 results for query number 35.
-DEBUG 2021-01-05 15:35:09,978: search_engine_best results have MAP value of 0.6677372022402682.
-INFO 2021-01-05 15:35:09,979: idx_bench.pkl found!
-INFO 2021-01-05 15:35:10,161: Successfully loaded idx_bench.pkl using search_engine_best.
-DEBUG 2021-01-05 15:35:10,161: Total runtime was: 0:00:28.761043
+  File "C:/Users/ofekr/Search_Engine-master/test_part_c_students.py", line 107, in <module>
+    engine.load_precomputed_model(model_dir)
+TypeError: load_precomputed_model() takes 1 positional argument but 2 were given
+INFO 2021-01-05 15:40:50,583: Successfully imported module search_engine_2.
+INFO 2021-01-05 15:40:50,712: loading projection weights from GoogleNews-vectors-negative300.bin
+DEBUG 2021-01-05 15:40:50,712: {'uri': 'GoogleNews-vectors-negative300.bin', 'mode': 'rb', 'buffering': -1, 'encoding': None, 'errors': None, 'newline': None, 'closefd': True, 'opener': None, 'ignore_ext': False, 'transport_params': None}
+INFO 2021-01-05 15:40:50,832: loaded (20000, 300) matrix from GoogleNews-vectors-negative300.bin
+DEBUG 2021-01-05 15:40:52,370: Building the index in search_engine_2 for benchmark data took 1.3914442999999999 seconds.
+ERROR 2021-01-05 15:40:52,370: The following error occured while testing the module search_engine_2.
+ERROR 2021-01-05 15:40:52,370: load_precomputed_model() takes 1 positional argument but 2 were given
+Traceback (most recent call last):
+  File "C:/Users/ofekr/Search_Engine-master/test_part_c_students.py", line 107, in <module>
+    engine.load_precomputed_model(model_dir)
+TypeError: load_precomputed_model() takes 1 positional argument but 2 were given
+INFO 2021-01-05 15:40:52,375: Successfully imported module search_engine_best.
+INFO 2021-01-05 15:40:52,522: loading projection weights from GoogleNews-vectors-negative300.bin
+DEBUG 2021-01-05 15:40:52,522: {'uri': 'GoogleNews-vectors-negative300.bin', 'mode': 'rb', 'buffering': -1, 'encoding': None, 'errors': None, 'newline': None, 'closefd': True, 'opener': None, 'ignore_ext': False, 'transport_params': None}
+INFO 2021-01-05 15:40:52,659: loaded (20000, 300) matrix from GoogleNews-vectors-negative300.bin
+INFO 2021-01-05 15:40:52,659: loading projection weights from GoogleNews-vectors-negative300.bin
+DEBUG 2021-01-05 15:40:52,659: {'uri': 'GoogleNews-vectors-negative300.bin', 'mode': 'rb', 'buffering': -1, 'encoding': None, 'errors': None, 'newline': None, 'closefd': True, 'opener': None, 'ignore_ext': False, 'transport_params': None}
+INFO 2021-01-05 15:40:54,733: loaded (300000, 300) matrix from GoogleNews-vectors-negative300.bin
+DEBUG 2021-01-05 15:40:56,250: Building the index in search_engine_best for benchmark data took 1.447436999999999 seconds.
+DEBUG 2021-01-05 15:40:56,251: search_engine_best successfully returned 32 results for the query 'bioweapon'.
+DEBUG 2021-01-05 15:40:56,270: search_engine_best successfully returned 816 results for query number 1.
+DEBUG 2021-01-05 15:40:56,485: search_engine_best successfully returned 4953 results for query number 2.
+DEBUG 2021-01-05 15:40:56,614: search_engine_best successfully returned 4985 results for query number 3.
+DEBUG 2021-01-05 15:40:56,632: search_engine_best successfully returned 347 results for query number 4.
+DEBUG 2021-01-05 15:40:56,639: search_engine_best successfully returned 313 results for query number 5.
+DEBUG 2021-01-05 15:40:56,761: search_engine_best successfully returned 4903 results for query number 6.
+DEBUG 2021-01-05 15:40:56,784: search_engine_best successfully returned 295 results for query number 7.
+DEBUG 2021-01-05 15:40:56,894: search_engine_best successfully returned 4759 results for query number 8.
+DEBUG 2021-01-05 15:40:56,979: search_engine_best successfully returned 2304 results for query number 9.
+DEBUG 2021-01-05 15:40:57,094: search_engine_best successfully returned 5092 results for query number 10.
+DEBUG 2021-01-05 15:40:57,227: search_engine_best successfully returned 4925 results for query number 11.
+DEBUG 2021-01-05 15:40:57,377: search_engine_best successfully returned 5238 results for query number 12.
+DEBUG 2021-01-05 15:40:57,490: search_engine_best successfully returned 4667 results for query number 13.
+DEBUG 2021-01-05 15:40:57,616: search_engine_best successfully returned 4929 results for query number 14.
+DEBUG 2021-01-05 15:40:57,626: search_engine_best successfully returned 50 results for query number 15.
+DEBUG 2021-01-05 15:40:57,642: search_engine_best successfully returned 510 results for query number 16.
+DEBUG 2021-01-05 15:40:57,722: search_engine_best successfully returned 2337 results for query number 17.
+DEBUG 2021-01-05 15:40:57,734: search_engine_best successfully returned 298 results for query number 18.
+DEBUG 2021-01-05 15:40:57,776: search_engine_best successfully returned 1704 results for query number 19.
+DEBUG 2021-01-05 15:40:57,820: search_engine_best successfully returned 1787 results for query number 20.
+DEBUG 2021-01-05 15:40:57,928: search_engine_best successfully returned 4835 results for query number 21.
+DEBUG 2021-01-05 15:40:58,060: search_engine_best successfully returned 5230 results for query number 22.
+DEBUG 2021-01-05 15:40:58,193: search_engine_best successfully returned 4970 results for query number 23.
+DEBUG 2021-01-05 15:40:58,329: search_engine_best successfully returned 5446 results for query number 24.
+DEBUG 2021-01-05 15:40:58,447: search_engine_best successfully returned 4919 results for query number 25.
+DEBUG 2021-01-05 15:40:58,491: search_engine_best successfully returned 1467 results for query number 26.
+DEBUG 2021-01-05 15:40:58,559: search_engine_best successfully returned 1781 results for query number 27.
+DEBUG 2021-01-05 15:40:58,676: search_engine_best successfully returned 4788 results for query number 28.
+DEBUG 2021-01-05 15:40:58,794: search_engine_best successfully returned 4725 results for query number 29.
+DEBUG 2021-01-05 15:40:58,848: search_engine_best successfully returned 1650 results for query number 30.
+DEBUG 2021-01-05 15:40:58,864: search_engine_best successfully returned 527 results for query number 31.
+DEBUG 2021-01-05 15:40:58,997: search_engine_best successfully returned 4906 results for query number 32.
+DEBUG 2021-01-05 15:40:59,121: search_engine_best successfully returned 4952 results for query number 33.
+DEBUG 2021-01-05 15:40:59,182: search_engine_best successfully returned 1754 results for query number 34.
+DEBUG 2021-01-05 15:40:59,225: search_engine_best successfully returned 1451 results for query number 35.
+DEBUG 2021-01-05 15:41:05,630: search_engine_best results have MAP value of 0.6677372022402682.
+DEBUG 2021-01-05 15:41:05,662: search_engine_best results produced average precision of 0.605927918594968.
+DEBUG 2021-01-05 15:41:05,662: search_engine_best results produced average precision@5 of 0.6571428571428573.
+DEBUG 2021-01-05 15:41:05,662: search_engine_best results produced average precision@10 of 0.6714285714285715.
+DEBUG 2021-01-05 15:41:05,662: search_engine_best results produced average precision@50 of 0.6683965014577259.
+DEBUG 2021-01-05 15:41:05,663: search_engine_best results produced average recall of 0.9297119956716673.
+INFO 2021-01-05 15:41:05,663: idx_bench.pkl found!
+INFO 2021-01-05 15:41:05,847: Successfully loaded idx_bench.pkl using search_engine_best.
+DEBUG 2021-01-05 15:41:05,847: Total runtime was: 0:00:20.426820

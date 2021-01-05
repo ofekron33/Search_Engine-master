@@ -101,7 +101,7 @@ def main():  # (corpus_path,output_path,stemming,queries,num_docs_to_retrieve):
     arr2=get_all_parquet_files(os.getcwd())
     s=SearchEngine()
     s.build_index_from_parquet(arr2[3])
-
+    s.search("Covid")
 
 
 def get_all_parquet_files(dir):

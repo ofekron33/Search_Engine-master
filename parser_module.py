@@ -343,26 +343,11 @@ class Parse:
                     continue
                 index = index + 1
             elif (((usa_abbrev != "Never") )):
-                if (terms[index].upper() not in dic.keys()):
-                    dic[terms[index]] = 1
                     if(usa_abbrev not in dic.keys()):
                         dic[usa_abbrev]=1
                     else:
                         dic[usa_abbrev]+=1
-                else:
-                    dic[terms[index]] += 1
-                    if (usa_abbrev not in dic, keys()):
-                        dic[usa_abbrev] == 1
-                    else:
-                        dic[usa_abbrev] += 1
-                index = index + 1
-                continue
-                if (usa_abbrev not in dic.keys()):
-                    dic[usa_abbrev] = 1
-                else:
-                    dic[usa_abbrev] += 1
-                index = index + 1
-                continue
+                    index = index + 1
             elif (terms[index].isdigit()) or (re.search(r"(?:\\d+\\s+)?\\d/\\d", terms[index])) or (
             re.search(r'^-?[0-9]+\/[0-9]+$', terms[index])):
                 if (index == len(terms) - 1):  ##mikre katze doc24512 (# in last token)#case 0 the number is the last index

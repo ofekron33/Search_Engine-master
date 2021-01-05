@@ -1,4 +1,6 @@
 import math
+import time
+
 import numpy as np
 from scipy import spatial
 
@@ -34,7 +36,10 @@ class Searcher:
             a list of tweet_ids where the first element is the most relavant 
             and the last is the least relevant result.
         """
-        query_as_list = self._parser.parse_doc(query).term_doc_dictionary
+        query_as_list = self._parser.parse_query(query)
+        if query == "bioweapon":
+            print(query_as_list)
+
         relevant_docs = self._relevant_docs_from_posting(query_as_list)
         n_relevant = len(relevant_docs)
         ranked_doc_ids = Ranker.rank_relevant_docs(relevant_docs)
@@ -104,7 +109,8 @@ class Searcher:
     def numer(self, query, doc):
         num = 0
         for term in query.keys():
-            num += query[term]*doc[term]
+            if term in doc.keys():
+                num += query[term]*doc[term]
         return num
 
 

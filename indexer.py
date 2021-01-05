@@ -1,5 +1,6 @@
 import numpy as np
 import  utils
+import math
 from document import Document_to_index
 # DO NOT MODIFY CLASS NAME
 from gensim.models import KeyedVectors
@@ -43,7 +44,7 @@ class Indexer:
                 self.inverted_idx[term][0][2] += document_dictionary[term]
                 self.inverted_idx[term][1].append((document_dictionary[term] / max_tf, document.tweet_id))
         self.inverted_idx[document.tweet_id] = (document.term_doc_dictionary, document.max_tf, document.hashtag_arr)
-  #      self.postingVector[document.tweet_id] = self.average_vector(document.term_doc_dictionary)
+   #     self.postingVector[document.tweet_id] = self.average_vector(document.term_doc_dictionary)
         self.doc_num += 1
 
 
@@ -86,9 +87,9 @@ class Indexer:
         Input:
               fn - file name of pickled index.
         """
-        utils.save_obj(fn,"whatttt")
+        utils.save_obj(fn,"idx_bench")
 
-    # feel free to change the signature and/or implementation of this function 
+    # feel free to change the signature and/or implementation of this function
     # or drop altogether.
     def _is_term_exist(self, term):
         """
@@ -96,10 +97,23 @@ class Indexer:
         """
         return term in self.postingDict
 
-    # feel free to change the signature and/or implementation of this function 
+    # feel free to change the signature and/or implementation of this function
     # or drop altogether.
     def get_term_posting_list(self, term):
         """
         Return the posting list from the index for a term.
         """
         return self.postingDict[term] if self._is_term_exist(term) else []
+    def IDF(self):
+        for key in self.inverted_idx.keys():
+            if(key=="1280921542243659776"):
+                tmp=0
+            print(key)
+            idf = self.doc_num/self.inverted_idx[key][0][0]
+            idf = math.log(idf,2)
+            self.inverted_idx[key][0][1] = idf
+
+    def end_indexer(self):
+        self.IDF()
+        utils.save_obj(self.inverted_idx,"idx_bench")
+        utils.save_obj(self.postingVector,"vectors")

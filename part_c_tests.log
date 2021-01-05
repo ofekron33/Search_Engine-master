@@ -1,5 +1,30 @@
-ERROR 2020-12-31 20:57:52,154: report_part_c.docx does not exist.
-ERROR 2020-12-31 20:57:52,170: search_engine_1.py does not exist.
-ERROR 2020-12-31 20:57:52,170: search_engine_2.py does not exist.
-ERROR 2020-12-31 20:58:02,395: idx_bench.pkl does not exist.
-DEBUG 2020-12-31 20:58:02,395: Total runtime was: 0:00:10.241432
+ERROR 2021-01-05 14:26:30,279: report_part_c.docx does not exist.
+INFO 2021-01-05 14:26:30,299: Successfully loaded benchmark labels data.
+INFO 2021-01-05 14:26:30,304: Successfully loaded queries data.
+INFO 2021-01-05 14:26:30,306: Successfully imported module search_engine_1.
+ERROR 2021-01-05 14:26:30,306: The following error occured while testing the module search_engine_1.
+ERROR 2021-01-05 14:26:30,307: module 'search_engine_1' has no attribute 'SearchEngine'
+Traceback (most recent call last):
+  File "C:/Users/ofekr/Search_Engine-master/test_part_c_students.py", line 73, in <module>
+    engine = se.SearchEngine()
+AttributeError: module 'search_engine_1' has no attribute 'SearchEngine'
+INFO 2021-01-05 14:26:32,729: Successfully imported module search_engine_2.
+INFO 2021-01-05 14:26:33,100: loading projection weights from GoogleNews-vectors-negative300.bin
+DEBUG 2021-01-05 14:26:33,100: {'uri': 'GoogleNews-vectors-negative300.bin', 'mode': 'rb', 'buffering': -1, 'encoding': None, 'errors': None, 'newline': None, 'closefd': True, 'opener': None, 'ignore_ext': False, 'transport_params': None}
+INFO 2021-01-05 14:26:33,355: loaded (20000, 300) matrix from GoogleNews-vectors-negative300.bin
+DEBUG 2021-01-05 14:26:37,065: Building the index in search_engine_2 for benchmark data took 3.6585294999999993 seconds.
+ERROR 2021-01-05 14:26:37,065: The following error occured while testing the module search_engine_2.
+ERROR 2021-01-05 14:26:37,066: 'module' object is not callable
+Traceback (most recent call last):
+  File "C:/Users/ofekr/Search_Engine-master/test_part_c_students.py", line 87, in <module>
+    n_res, res = engine.search('bioweapon')
+  File "C:\Users\ofekr\Search_Engine-master\search_engine_2.py", line 89, in search
+    s = searcher(self._parser, self._indexer)
+TypeError: 'module' object is not callable
+INFO 2021-01-05 14:26:37,068: Successfully imported module search_engine_best.
+INFO 2021-01-05 14:26:37,428: loading projection weights from GoogleNews-vectors-negative300.bin
+DEBUG 2021-01-05 14:26:37,428: {'uri': 'GoogleNews-vectors-negative300.bin', 'mode': 'rb', 'buffering': -1, 'encoding': None, 'errors': None, 'newline': None, 'closefd': True, 'opener': None, 'ignore_ext': False, 'transport_params': None}
+INFO 2021-01-05 14:26:37,717: loaded (20000, 300) matrix from GoogleNews-vectors-negative300.bin
+INFO 2021-01-05 14:26:37,717: loading projection weights from GoogleNews-vectors-negative300.bin
+DEBUG 2021-01-05 14:26:37,717: {'uri': 'GoogleNews-vectors-negative300.bin', 'mode': 'rb', 'buffering': -1, 'encoding': None, 'errors': None, 'newline': None, 'closefd': True, 'opener': None, 'ignore_ext': False, 'transport_params': None}
+INFO 2021-01-05 14:26:42,065: loaded (300000, 300) matrix from GoogleNews-vectors-negative300.bin

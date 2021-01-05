@@ -12,7 +12,7 @@ class Parse:
     def __init__(self):
         self.counter=0
         self.stop_words = frozenset(stopwords.words('english'))
-        self.added_stop_words=["I","The","rT","rt","http","https",'t.co'," ","","twitter.com","-","www","_","&amp","##","###","####","#####"]
+        self.added_stop_words=["I","The","rT","RT","rt","http","https",'t.co'," ","","twitter.com","-","www","_","&amp","##","###","####","#####","19"]
         self.check=0
         self.words = open(r'zif.txt').read().split()
         self.dictionay_word_cost = dict((k, log((i + 1) * log(len(self.words)))) for i, k in enumerate(self.words))
@@ -60,7 +60,7 @@ class Parse:
         while(index<len(terms)):
         #    w=terms[index].lower()
             usa_abbrev=self.usa_abbreviations.get(terms[index].upper(),"Never")
-            if(terms[index] in self.stop_words):
+            if(terms[index] in self.stop_words or terms[index] in  self.added_stop_words):
                 index=index+1
                 continue
             elif (terms[index][0] == '@' and len(terms[index])>1):  # @rule
@@ -75,7 +75,6 @@ class Parse:
                         self.hashtag_arr.append(i)
                 index=index+1
             elif (usa_abbrev!="Never"):
-                self.enter_dic(terms[index].upper())
                 self.enter_dic(usa_abbrev)
                 index=index+1
             elif (terms[index].isdigit()) or (re.search(r"(?:\\d+\\s+)?\\d/\\d", terms[index])) or (re.search(r'^-?[0-9]+\/[0-9]+$', terms[index])):

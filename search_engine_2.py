@@ -1,5 +1,5 @@
 import time
-
+import searcher
 import pandas as pd
 from reader import ReadFile
 from configuration import ConfigClass
@@ -86,8 +86,8 @@ class SearchEngine:
             a list of tweet_ids where the first element is the most relavant
             and the last is the least relevant result.
         """
-        searcher = Searcher2(self._parser, self._indexer)
-        return searcher.search(query)
+        s = searcher(self._parser, self._indexer)
+        return s.search(query)
 import utils
 
 def main():  # (corpus_path,output_path,stemming,queries,num_docs_to_retrieve):

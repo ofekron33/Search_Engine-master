@@ -35,7 +35,6 @@ class Searcher:
             and the last is the least relevant result.
         """
         query_as_list = self._parser.parse_doc(query).term_doc_dictionary
-
         relevant_docs = self._relevant_docs_from_posting(query_as_list)
         n_relevant = len(relevant_docs)
         ranked_doc_ids = Ranker.rank_relevant_docs(relevant_docs)

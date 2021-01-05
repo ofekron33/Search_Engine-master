@@ -54,7 +54,7 @@ class SearchEngine:
         print("time took - "+str(end-start))
 
         print('Finished parsing and indexing.')
-
+        self._indexer.end_indexer()
     # DO NOT MODIFY THIS SIGNATURE
     # You can change the internal implementation as you see fit.
     def load_index(self, fn):
@@ -90,7 +90,7 @@ class SearchEngine:
             and the last is the least relevant result.
         """
        # searcher = Searcher(self._parser, self._indexer, model=self.model)
-        searcher = Sea(self._parser, self._indexer, model=self.model)
+        searcher = Searcher(self._parser, self._indexer, model=self.model)
 
         return searcher.search(query,100)
 
@@ -100,16 +100,9 @@ def main():  # (corpus_path,output_path,stemming,queries,num_docs_to_retrieve):
     #arr1=get_all_parquet_files("D:\Downloads\Data")
     arr2=get_all_parquet_files(os.getcwd())
     s=SearchEngine()
-    #s.build_index_from_parquet(arr2[3])
-    # for i in arr2:
-    #     s.build_index_from_parquet(i)
-    #s.build_index_from_parquet("D:\\Daniel\\School\\5th semester\\SEPC\\data\\benchmark_data_train.snappy.parquet")
-    print("please enter query to search :")
-    query = input()
-    start = time.time()
-    print(s.search(query))
-    end = time.time()
-    print("time took for query is "+str(end - start))
+    s.build_index_from_parquet(arr2[3])
+
+
 
 def get_all_parquet_files(dir):
     arr=[]

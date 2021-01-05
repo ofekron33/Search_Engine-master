@@ -1,154 +1,121 @@
-ERROR 2021-01-05 14:59:12,308: report_part_c.docx does not exist.
-INFO 2021-01-05 14:59:12,320: Successfully loaded benchmark labels data.
-INFO 2021-01-05 14:59:12,321: Successfully loaded queries data.
-INFO 2021-01-05 14:59:13,266: Successfully imported module search_engine_1.
-INFO 2021-01-05 14:59:13,399: loading projection weights from GoogleNews-vectors-negative300.bin
-DEBUG 2021-01-05 14:59:13,399: {'uri': 'GoogleNews-vectors-negative300.bin', 'mode': 'rb', 'buffering': -1, 'encoding': None, 'errors': None, 'newline': None, 'closefd': True, 'opener': None, 'ignore_ext': False, 'transport_params': None}
-INFO 2021-01-05 14:59:13,553: loaded (20000, 300) matrix from GoogleNews-vectors-negative300.bin
-INFO 2021-01-05 14:59:13,553: loading projection weights from GoogleNews-vectors-negative300.bin
-DEBUG 2021-01-05 14:59:13,554: {'uri': 'GoogleNews-vectors-negative300.bin', 'mode': 'rb', 'buffering': -1, 'encoding': None, 'errors': None, 'newline': None, 'closefd': True, 'opener': None, 'ignore_ext': False, 'transport_params': None}
-INFO 2021-01-05 14:59:15,661: loaded (300000, 300) matrix from GoogleNews-vectors-negative300.bin
-DEBUG 2021-01-05 14:59:17,339: Building the index in search_engine_1 for benchmark data took 1.636737262 seconds.
-ERROR 2021-01-05 14:59:17,339: basic query for the word bioweapon returned no results
-DEBUG 2021-01-05 14:59:17,340: search_engine_1 successfully returned 29 results for query number 1.
-ERROR 2021-01-05 14:59:17,340: Query  1 returned results that are not valid tweet ids: [('1287008245098459137', 1), ('1284687600079577088', 1), ('1282607917674319873', 1), ('1283564996182577157', 1), ('1283538346996666368', 1), ('1285298286434254848', 1), ('1282133734876155908', 1), ('1280928593401520130', 1), ('1282198161730068484', 1), ('1286952982349783040', 1)]
-DEBUG 2021-01-05 14:59:17,341: search_engine_1 successfully returned 29 results for query number 2.
-ERROR 2021-01-05 14:59:17,341: Query  2 returned results that are not valid tweet ids: [('1287008245098459137', 1), ('1284687600079577088', 1), ('1282607917674319873', 1), ('1283564996182577157', 1), ('1283538346996666368', 1), ('1285298286434254848', 1), ('1282133734876155908', 1), ('1280928593401520130', 1), ('1282198161730068484', 1), ('1286952982349783040', 1)]
-DEBUG 2021-01-05 14:59:17,341: search_engine_1 successfully returned 11 results for query number 3.
-ERROR 2021-01-05 14:59:17,341: Query  3 returned results that are not valid tweet ids: [('1284367182890012674', 1), ('1286138136670744576', 0), ('1285963261683343362', 0), ('1282570654865338368', 0), ('1281681095185125385', 0), ('1280979197872214024', 0), ('1284542288983719936', 0), ('1287330191832948736', 0), ('1284879858410102785', 0), ('1286419905882062848', 0)]
-ERROR 2021-01-05 14:59:17,342: Query 4 with keywords 'gates implant microchips' returned no results.
-DEBUG 2021-01-05 14:59:17,342: search_engine_1 successfully returned 16 results for query number 5.
-ERROR 2021-01-05 14:59:17,342: Query  5 returned results that are not valid tweet ids: [('1290631573436588035', 1), ('1283842651062665216', 1), ('1281209349042569216', 1), ('1284683908727091200', 0), ('1286052546860085248', 0), ('1281215297547100160', 0), ('1287097989924818947', 0), ('1285663929767800833', 0), ('1285952321420230659', 0), ('1280999778562826241', 0)]
-ERROR 2021-01-05 14:59:17,342: Query 6 with keywords 'Gates own covid vaccine' returned no results.
-DEBUG 2021-01-05 14:59:17,343: search_engine_1 successfully returned 11 results for query number 7.
-ERROR 2021-01-05 14:59:17,343: Query  7 returned results that are not valid tweet ids: [('1284367182890012674', 1), ('1286138136670744576', 0), ('1285963261683343362', 0), ('1282570654865338368', 0), ('1281681095185125385', 0), ('1280979197872214024', 0), ('1284542288983719936', 0), ('1287330191832948736', 0), ('1284879858410102785', 0), ('1286419905882062848', 0)]
-ERROR 2021-01-05 14:59:17,343: Query 8 with keywords 'children immune to coronavirus' returned no results.
-DEBUG 2021-01-05 14:59:17,344: search_engine_1 successfully returned 16 results for query number 9.
-ERROR 2021-01-05 14:59:17,344: Query  9 returned results that are not valid tweet ids: [('1290631573436588035', 1), ('1283842651062665216', 1), ('1281209349042569216', 1), ('1284683908727091200', 0), ('1286052546860085248', 0), ('1281215297547100160', 0), ('1287097989924818947', 0), ('1285663929767800833', 0), ('1285952321420230659', 0), ('1280999778562826241', 0)]
-DEBUG 2021-01-05 14:59:17,344: search_engine_1 successfully returned 8 results for query number 10.
-ERROR 2021-01-05 14:59:17,344: Query  10 returned results that are not valid tweet ids: [('1287193836796739590', 1), ('1285849467892183040', 1), ('1285864957637263360', 1), ('1282682623853129731', 1), ('1283819148229988354', 1), ('1282357086244855808', 1), ('1282255926473322499', 1), ('1283528769593057283', 1)]
-ERROR 2021-01-05 14:59:17,345: Query 11 with keywords 'US lowest covid mortality' returned no results.
-DEBUG 2021-01-05 14:59:17,345: search_engine_1 successfully returned 11 results for query number 12.
-ERROR 2021-01-05 14:59:17,345: Query  12 returned results that are not valid tweet ids: [('1284367182890012674', 1), ('1286138136670744576', 0), ('1285963261683343362', 0), ('1282570654865338368', 0), ('1281681095185125385', 0), ('1280979197872214024', 0), ('1284542288983719936', 0), ('1287330191832948736', 0), ('1284879858410102785', 0), ('1286419905882062848', 0)]
-ERROR 2021-01-05 14:59:17,345: Query 13 with keywords '5G spreads covid-19' returned no results.
-ERROR 2021-01-05 14:59:17,345: Query 14 with keywords 'disinfectant can cure coronavirus' returned no results.
-DEBUG 2021-01-05 14:59:17,346: search_engine_1 successfully returned 10 results for query number 15.
-ERROR 2021-01-05 14:59:17,346: Query  15 returned results that are not valid tweet ids: [('1280928541211652097', 1), ('1281166452213477377', 1), ('1281166560435081223', 1), ('1281129280064258049', 1), ('1287499314290466816', 0), ('1287500490448809984', 0), ('1287522614483849216', 0), ('1287496875038445569', 0), ('1287506427075080194', 0), ('1283857786762395649', 0)]
-ERROR 2021-01-05 14:59:17,346: Query 16 with keywords 'epidemic status death rate' returned no results.
-ERROR 2021-01-05 14:59:17,346: Query 17 with keywords 'wear masks healthy people' returned no results.
-ERROR 2021-01-05 14:59:17,347: Query 18 with keywords 'bioweapon lab wuhan' returned no results.
-ERROR 2021-01-05 14:59:17,347: Query 19 with keywords 'people ate bat soup' returned no results.
-ERROR 2021-01-05 14:59:17,347: Query 20 with keywords 'Outbreak people ate bat' returned no results.
-DEBUG 2021-01-05 14:59:17,347: search_engine_1 successfully returned 11 results for query number 21.
-ERROR 2021-01-05 14:59:17,347: Query  21 returned results that are not valid tweet ids: [('1284367182890012674', 1), ('1286138136670744576', 0), ('1285963261683343362', 0), ('1282570654865338368', 0), ('1281681095185125385', 0), ('1280979197872214024', 0), ('1284542288983719936', 0), ('1287330191832948736', 0), ('1284879858410102785', 0), ('1286419905882062848', 0)]
-DEBUG 2021-01-05 14:59:17,348: search_engine_1 successfully returned 8 results for query number 22.
-ERROR 2021-01-05 14:59:17,348: Query  22 returned results that are not valid tweet ids: [('1291149266656919553', 1), ('1286109543001395202', 0), ('1282362384649256962', 0), ('1283886897216000001', 0), ('1285945644344061954', 0), ('1286654479580958720', 0), ('1283792121070116864', 0), ('1286050107272491008', 0)]
-DEBUG 2021-01-05 14:59:17,348: search_engine_1 successfully returned 29 results for query number 23.
-ERROR 2021-01-05 14:59:17,349: Query  23 returned results that are not valid tweet ids: [('1287008245098459137', 1), ('1284687600079577088', 1), ('1282607917674319873', 1), ('1283564996182577157', 1), ('1283538346996666368', 1), ('1285298286434254848', 1), ('1282133734876155908', 1), ('1280928593401520130', 1), ('1282198161730068484', 1), ('1286952982349783040', 1)]
-DEBUG 2021-01-05 14:59:17,349: search_engine_1 successfully returned 11 results for query number 24.
-ERROR 2021-01-05 14:59:17,349: Query  24 returned results that are not valid tweet ids: [('1284367182890012674', 1), ('1286138136670744576', 0), ('1285963261683343362', 0), ('1282570654865338368', 0), ('1281681095185125385', 0), ('1280979197872214024', 0), ('1284542288983719936', 0), ('1287330191832948736', 0), ('1284879858410102785', 0), ('1286419905882062848', 0)]
-DEBUG 2021-01-05 14:59:17,350: search_engine_1 successfully returned 8 results for query number 25.
-ERROR 2021-01-05 14:59:17,350: Query  25 returned results that are not valid tweet ids: [('1291149266656919553', 1), ('1286109543001395202', 0), ('1282362384649256962', 0), ('1283886897216000001', 0), ('1285945644344061954', 0), ('1286654479580958720', 0), ('1283792121070116864', 0), ('1286050107272491008', 0)]
-ERROR 2021-01-05 14:59:17,350: Query 26 with keywords 'masks do not cause oxygen deficiency' returned no results.
-ERROR 2021-01-05 14:59:17,350: Query 27 with keywords 'Masks don't cause CO2 intoxication.' returned no results.
-DEBUG 2021-01-05 14:59:17,350: search_engine_1 successfully returned 8 results for query number 28.
-ERROR 2021-01-05 14:59:17,351: Query  28 returned results that are not valid tweet ids: [('1291149266656919553', 1), ('1286109543001395202', 0), ('1282362384649256962', 0), ('1283886897216000001', 0), ('1285945644344061954', 0), ('1286654479580958720', 0), ('1283792121070116864', 0), ('1286050107272491008', 0)]
-ERROR 2021-01-05 14:59:17,351: Query 29 with keywords 'coin shortage coronavirus' returned no results.
-ERROR 2021-01-05 14:59:17,351: Query 30 with keywords 'not wear masks while exercising' returned no results.
-ERROR 2021-01-05 14:59:17,351: Query 31 with keywords 'hydroxychloroquine treating SARS' returned no results.
-DEBUG 2021-01-05 14:59:17,351: search_engine_1 successfully returned 12 results for query number 32.
-ERROR 2021-01-05 14:59:17,352: Query  32 returned results that are not valid tweet ids: [('1281005743856992258', 1), ('1280945978137145344', 1), ('1281002239021236229', 1), ('1281001415272472576', 1), ('1281184688053391360', 1), ('1281081586134347776', 1), ('1281040156640731136', 1), ('1281041147608084480', 1), ('1281053698886635521', 1), ('1281041521765167107', 1)]
-DEBUG 2021-01-05 14:59:17,352: search_engine_1 successfully returned 12 results for query number 33.
-ERROR 2021-01-05 14:59:17,352: Query  33 returned results that are not valid tweet ids: [('1281005743856992258', 1), ('1280945978137145344', 1), ('1281002239021236229', 1), ('1281001415272472576', 1), ('1281184688053391360', 1), ('1281081586134347776', 1), ('1281040156640731136', 1), ('1281041147608084480', 1), ('1281053698886635521', 1), ('1281041521765167107', 1)]
-ERROR 2021-01-05 14:59:17,352: Query 34 with keywords 'wearing masks proven ineffective' returned no results.
-DEBUG 2021-01-05 14:59:17,353: search_engine_1 successfully returned 11 results for query number 35.
-ERROR 2021-01-05 14:59:17,353: Query  35 returned results that are not valid tweet ids: [('1284367182890012674', 1), ('1286138136670744576', 0), ('1285963261683343362', 0), ('1282570654865338368', 0), ('1281681095185125385', 0), ('1280979197872214024', 0), ('1284542288983719936', 0), ('1287330191832948736', 0), ('1284879858410102785', 0), ('1286419905882062848', 0)]
-INFO 2021-01-05 14:59:17,356: Successfully imported module search_engine_2.
-INFO 2021-01-05 14:59:17,506: loading projection weights from GoogleNews-vectors-negative300.bin
-DEBUG 2021-01-05 14:59:17,506: {'uri': 'GoogleNews-vectors-negative300.bin', 'mode': 'rb', 'buffering': -1, 'encoding': None, 'errors': None, 'newline': None, 'closefd': True, 'opener': None, 'ignore_ext': False, 'transport_params': None}
-INFO 2021-01-05 14:59:17,648: loaded (20000, 300) matrix from GoogleNews-vectors-negative300.bin
-DEBUG 2021-01-05 14:59:19,309: Building the index in search_engine_2 for benchmark data took 1.5278851730000005 seconds.
-ERROR 2021-01-05 14:59:19,309: The following error occured while testing the module search_engine_2.
-ERROR 2021-01-05 14:59:19,309: 'module' object is not callable
+ERROR 2021-01-05 15:12:08,146: report_part_c.docx does not exist.
+INFO 2021-01-05 15:12:08,157: Successfully loaded benchmark labels data.
+INFO 2021-01-05 15:12:08,159: Successfully loaded queries data.
+INFO 2021-01-05 15:12:09,133: Successfully imported module search_engine_1.
+INFO 2021-01-05 15:12:09,267: loading projection weights from GoogleNews-vectors-negative300.bin
+DEBUG 2021-01-05 15:12:09,267: {'uri': 'GoogleNews-vectors-negative300.bin', 'mode': 'rb', 'buffering': -1, 'encoding': None, 'errors': None, 'newline': None, 'closefd': True, 'opener': None, 'ignore_ext': False, 'transport_params': None}
+INFO 2021-01-05 15:12:09,425: loaded (20000, 300) matrix from GoogleNews-vectors-negative300.bin
+INFO 2021-01-05 15:12:09,425: loading projection weights from GoogleNews-vectors-negative300.bin
+DEBUG 2021-01-05 15:12:09,425: {'uri': 'GoogleNews-vectors-negative300.bin', 'mode': 'rb', 'buffering': -1, 'encoding': None, 'errors': None, 'newline': None, 'closefd': True, 'opener': None, 'ignore_ext': False, 'transport_params': None}
+INFO 2021-01-05 15:12:11,555: loaded (300000, 300) matrix from GoogleNews-vectors-negative300.bin
+DEBUG 2021-01-05 15:12:13,293: Building the index in search_engine_1 for benchmark data took 1.694500005 seconds.
+DEBUG 2021-01-05 15:12:13,293: search_engine_1 successfully returned 32 results for the query 'bioweapon'.
+DEBUG 2021-01-05 15:12:13,328: search_engine_1 successfully returned 816 results for query number 1.
+DEBUG 2021-01-05 15:12:13,422: search_engine_1 successfully returned 4990 results for query number 2.
+DEBUG 2021-01-05 15:12:13,534: search_engine_1 successfully returned 5209 results for query number 3.
+DEBUG 2021-01-05 15:12:13,551: search_engine_1 successfully returned 347 results for query number 4.
+DEBUG 2021-01-05 15:12:13,556: search_engine_1 successfully returned 313 results for query number 5.
+DEBUG 2021-01-05 15:12:13,652: search_engine_1 successfully returned 4938 results for query number 6.
+DEBUG 2021-01-05 15:12:13,668: search_engine_1 successfully returned 295 results for query number 7.
+DEBUG 2021-01-05 15:12:13,763: search_engine_1 successfully returned 5030 results for query number 8.
+DEBUG 2021-01-05 15:12:13,826: search_engine_1 successfully returned 2304 results for query number 9.
+DEBUG 2021-01-05 15:12:13,922: search_engine_1 successfully returned 5337 results for query number 10.
+DEBUG 2021-01-05 15:12:14,027: search_engine_1 successfully returned 4961 results for query number 11.
+DEBUG 2021-01-05 15:12:14,233: search_engine_1 successfully returned 5252 results for query number 12.
+DEBUG 2021-01-05 15:12:14,328: search_engine_1 successfully returned 4682 results for query number 13.
+DEBUG 2021-01-05 15:12:14,428: search_engine_1 successfully returned 5181 results for query number 14.
+DEBUG 2021-01-05 15:12:14,437: search_engine_1 successfully returned 50 results for query number 15.
+DEBUG 2021-01-05 15:12:14,450: search_engine_1 successfully returned 510 results for query number 16.
+DEBUG 2021-01-05 15:12:14,506: search_engine_1 successfully returned 2337 results for query number 17.
+DEBUG 2021-01-05 15:12:14,516: search_engine_1 successfully returned 298 results for query number 18.
+DEBUG 2021-01-05 15:12:14,550: search_engine_1 successfully returned 1704 results for query number 19.
+DEBUG 2021-01-05 15:12:14,585: search_engine_1 successfully returned 1787 results for query number 20.
+DEBUG 2021-01-05 15:12:14,677: search_engine_1 successfully returned 5097 results for query number 21.
+DEBUG 2021-01-05 15:12:14,793: search_engine_1 successfully returned 5244 results for query number 22.
+DEBUG 2021-01-05 15:12:14,897: search_engine_1 successfully returned 4983 results for query number 23.
+DEBUG 2021-01-05 15:12:15,015: search_engine_1 successfully returned 5641 results for query number 24.
+DEBUG 2021-01-05 15:12:15,119: search_engine_1 successfully returned 4934 results for query number 25.
+DEBUG 2021-01-05 15:12:15,161: search_engine_1 successfully returned 1467 results for query number 26.
+DEBUG 2021-01-05 15:12:15,209: search_engine_1 successfully returned 1781 results for query number 27.
+DEBUG 2021-01-05 15:12:15,307: search_engine_1 successfully returned 4802 results for query number 28.
+DEBUG 2021-01-05 15:12:15,411: search_engine_1 successfully returned 5011 results for query number 29.
+DEBUG 2021-01-05 15:12:15,455: search_engine_1 successfully returned 1650 results for query number 30.
+DEBUG 2021-01-05 15:12:15,467: search_engine_1 successfully returned 527 results for query number 31.
+ERROR 2021-01-05 15:12:15,491: The following error occured while testing the module search_engine_1.
+ERROR 2021-01-05 15:12:15,491: 'Covid'
+Traceback (most recent call last):
+  File "D:/Daniel/School/5th semester/SE_partc/test_part_c_students.py", line 104, in <module>
+    q_n_res, q_res = engine.search(q_keywords)
+  File "D:\Daniel\School\5th semester\SE_partc\search_engine_1.py", line 95, in search
+    return searcher.search(query,100)
+  File "D:\Daniel\School\5th semester\SE_partc\searcher.py", line 43, in search
+    relevant_docs = self._relevant_docs_from_posting(query_as_list)
+  File "D:\Daniel\School\5th semester\SE_partc\searcher.py", line 58, in _relevant_docs_from_posting
+    tweet_arr = self._indexer.inverted_idx[term][1]
+KeyError: 'Covid'
+INFO 2021-01-05 15:12:15,493: Successfully imported module search_engine_2.
+INFO 2021-01-05 15:12:15,627: loading projection weights from GoogleNews-vectors-negative300.bin
+DEBUG 2021-01-05 15:12:15,628: {'uri': 'GoogleNews-vectors-negative300.bin', 'mode': 'rb', 'buffering': -1, 'encoding': None, 'errors': None, 'newline': None, 'closefd': True, 'opener': None, 'ignore_ext': False, 'transport_params': None}
+INFO 2021-01-05 15:12:15,755: loaded (20000, 300) matrix from GoogleNews-vectors-negative300.bin
+DEBUG 2021-01-05 15:12:17,437: Building the index in search_engine_2 for benchmark data took 1.5465048780000004 seconds.
+ERROR 2021-01-05 15:12:17,438: The following error occured while testing the module search_engine_2.
+ERROR 2021-01-05 15:12:17,438: 'module' object is not callable
 Traceback (most recent call last):
   File "D:/Daniel/School/5th semester/SE_partc/test_part_c_students.py", line 87, in <module>
     n_res, res = engine.search('bioweapon')
   File "D:\Daniel\School\5th semester\SE_partc\search_engine_2.py", line 89, in search
     s = searcher(self._parser, self._indexer)
 TypeError: 'module' object is not callable
-INFO 2021-01-05 14:59:19,311: Successfully imported module search_engine_best.
-INFO 2021-01-05 14:59:19,438: loading projection weights from GoogleNews-vectors-negative300.bin
-DEBUG 2021-01-05 14:59:19,438: {'uri': 'GoogleNews-vectors-negative300.bin', 'mode': 'rb', 'buffering': -1, 'encoding': None, 'errors': None, 'newline': None, 'closefd': True, 'opener': None, 'ignore_ext': False, 'transport_params': None}
-INFO 2021-01-05 14:59:19,577: loaded (20000, 300) matrix from GoogleNews-vectors-negative300.bin
-INFO 2021-01-05 14:59:19,577: loading projection weights from GoogleNews-vectors-negative300.bin
-DEBUG 2021-01-05 14:59:19,577: {'uri': 'GoogleNews-vectors-negative300.bin', 'mode': 'rb', 'buffering': -1, 'encoding': None, 'errors': None, 'newline': None, 'closefd': True, 'opener': None, 'ignore_ext': False, 'transport_params': None}
-INFO 2021-01-05 14:59:21,636: loaded (300000, 300) matrix from GoogleNews-vectors-negative300.bin
-DEBUG 2021-01-05 14:59:23,309: Building the index in search_engine_best for benchmark data took 1.601999288 seconds.
-ERROR 2021-01-05 14:59:23,309: basic query for the word bioweapon returned no results
-DEBUG 2021-01-05 14:59:23,310: search_engine_best successfully returned 29 results for query number 1.
-ERROR 2021-01-05 14:59:23,310: Query  1 returned results that are not valid tweet ids: [('1287008245098459137', 1), ('1284687600079577088', 1), ('1282607917674319873', 1), ('1283564996182577157', 1), ('1283538346996666368', 1), ('1285298286434254848', 1), ('1282133734876155908', 1), ('1280928593401520130', 1), ('1282198161730068484', 1), ('1286952982349783040', 1)]
-DEBUG 2021-01-05 14:59:23,311: search_engine_best successfully returned 29 results for query number 2.
-ERROR 2021-01-05 14:59:23,311: Query  2 returned results that are not valid tweet ids: [('1287008245098459137', 1), ('1284687600079577088', 1), ('1282607917674319873', 1), ('1283564996182577157', 1), ('1283538346996666368', 1), ('1285298286434254848', 1), ('1282133734876155908', 1), ('1280928593401520130', 1), ('1282198161730068484', 1), ('1286952982349783040', 1)]
-DEBUG 2021-01-05 14:59:23,311: search_engine_best successfully returned 11 results for query number 3.
-ERROR 2021-01-05 14:59:23,311: Query  3 returned results that are not valid tweet ids: [('1284367182890012674', 1), ('1286138136670744576', 0), ('1285963261683343362', 0), ('1282570654865338368', 0), ('1281681095185125385', 0), ('1280979197872214024', 0), ('1284542288983719936', 0), ('1287330191832948736', 0), ('1284879858410102785', 0), ('1286419905882062848', 0)]
-ERROR 2021-01-05 14:59:23,311: Query 4 with keywords 'gates implant microchips' returned no results.
-DEBUG 2021-01-05 14:59:23,312: search_engine_best successfully returned 16 results for query number 5.
-ERROR 2021-01-05 14:59:23,312: Query  5 returned results that are not valid tweet ids: [('1290631573436588035', 1), ('1283842651062665216', 1), ('1281209349042569216', 1), ('1284683908727091200', 0), ('1286052546860085248', 0), ('1281215297547100160', 0), ('1287097989924818947', 0), ('1285663929767800833', 0), ('1285952321420230659', 0), ('1280999778562826241', 0)]
-ERROR 2021-01-05 14:59:23,312: Query 6 with keywords 'Gates own covid vaccine' returned no results.
-DEBUG 2021-01-05 14:59:23,313: search_engine_best successfully returned 11 results for query number 7.
-ERROR 2021-01-05 14:59:23,313: Query  7 returned results that are not valid tweet ids: [('1284367182890012674', 1), ('1286138136670744576', 0), ('1285963261683343362', 0), ('1282570654865338368', 0), ('1281681095185125385', 0), ('1280979197872214024', 0), ('1284542288983719936', 0), ('1287330191832948736', 0), ('1284879858410102785', 0), ('1286419905882062848', 0)]
-ERROR 2021-01-05 14:59:23,313: Query 8 with keywords 'children immune to coronavirus' returned no results.
-DEBUG 2021-01-05 14:59:23,314: search_engine_best successfully returned 16 results for query number 9.
-ERROR 2021-01-05 14:59:23,314: Query  9 returned results that are not valid tweet ids: [('1290631573436588035', 1), ('1283842651062665216', 1), ('1281209349042569216', 1), ('1284683908727091200', 0), ('1286052546860085248', 0), ('1281215297547100160', 0), ('1287097989924818947', 0), ('1285663929767800833', 0), ('1285952321420230659', 0), ('1280999778562826241', 0)]
-DEBUG 2021-01-05 14:59:23,314: search_engine_best successfully returned 8 results for query number 10.
-ERROR 2021-01-05 14:59:23,314: Query  10 returned results that are not valid tweet ids: [('1287193836796739590', 1), ('1285849467892183040', 1), ('1285864957637263360', 1), ('1282682623853129731', 1), ('1283819148229988354', 1), ('1282357086244855808', 1), ('1282255926473322499', 1), ('1283528769593057283', 1)]
-ERROR 2021-01-05 14:59:23,315: Query 11 with keywords 'US lowest covid mortality' returned no results.
-DEBUG 2021-01-05 14:59:23,315: search_engine_best successfully returned 11 results for query number 12.
-ERROR 2021-01-05 14:59:23,315: Query  12 returned results that are not valid tweet ids: [('1284367182890012674', 1), ('1286138136670744576', 0), ('1285963261683343362', 0), ('1282570654865338368', 0), ('1281681095185125385', 0), ('1280979197872214024', 0), ('1284542288983719936', 0), ('1287330191832948736', 0), ('1284879858410102785', 0), ('1286419905882062848', 0)]
-ERROR 2021-01-05 14:59:23,315: Query 13 with keywords '5G spreads covid-19' returned no results.
-ERROR 2021-01-05 14:59:23,315: Query 14 with keywords 'disinfectant can cure coronavirus' returned no results.
-DEBUG 2021-01-05 14:59:23,316: search_engine_best successfully returned 10 results for query number 15.
-ERROR 2021-01-05 14:59:23,316: Query  15 returned results that are not valid tweet ids: [('1280928541211652097', 1), ('1281166452213477377', 1), ('1281166560435081223', 1), ('1281129280064258049', 1), ('1287499314290466816', 0), ('1287500490448809984', 0), ('1287522614483849216', 0), ('1287496875038445569', 0), ('1287506427075080194', 0), ('1283857786762395649', 0)]
-ERROR 2021-01-05 14:59:23,316: Query 16 with keywords 'epidemic status death rate' returned no results.
-ERROR 2021-01-05 14:59:23,316: Query 17 with keywords 'wear masks healthy people' returned no results.
-ERROR 2021-01-05 14:59:23,317: Query 18 with keywords 'bioweapon lab wuhan' returned no results.
-ERROR 2021-01-05 14:59:23,317: Query 19 with keywords 'people ate bat soup' returned no results.
-ERROR 2021-01-05 14:59:23,317: Query 20 with keywords 'Outbreak people ate bat' returned no results.
-DEBUG 2021-01-05 14:59:23,317: search_engine_best successfully returned 11 results for query number 21.
-ERROR 2021-01-05 14:59:23,318: Query  21 returned results that are not valid tweet ids: [('1284367182890012674', 1), ('1286138136670744576', 0), ('1285963261683343362', 0), ('1282570654865338368', 0), ('1281681095185125385', 0), ('1280979197872214024', 0), ('1284542288983719936', 0), ('1287330191832948736', 0), ('1284879858410102785', 0), ('1286419905882062848', 0)]
-DEBUG 2021-01-05 14:59:23,318: search_engine_best successfully returned 8 results for query number 22.
-ERROR 2021-01-05 14:59:23,318: Query  22 returned results that are not valid tweet ids: [('1291149266656919553', 1), ('1286109543001395202', 0), ('1282362384649256962', 0), ('1283886897216000001', 0), ('1285945644344061954', 0), ('1286654479580958720', 0), ('1283792121070116864', 0), ('1286050107272491008', 0)]
-DEBUG 2021-01-05 14:59:23,319: search_engine_best successfully returned 29 results for query number 23.
-ERROR 2021-01-05 14:59:23,319: Query  23 returned results that are not valid tweet ids: [('1287008245098459137', 1), ('1284687600079577088', 1), ('1282607917674319873', 1), ('1283564996182577157', 1), ('1283538346996666368', 1), ('1285298286434254848', 1), ('1282133734876155908', 1), ('1280928593401520130', 1), ('1282198161730068484', 1), ('1286952982349783040', 1)]
-DEBUG 2021-01-05 14:59:23,319: search_engine_best successfully returned 11 results for query number 24.
-ERROR 2021-01-05 14:59:23,320: Query  24 returned results that are not valid tweet ids: [('1284367182890012674', 1), ('1286138136670744576', 0), ('1285963261683343362', 0), ('1282570654865338368', 0), ('1281681095185125385', 0), ('1280979197872214024', 0), ('1284542288983719936', 0), ('1287330191832948736', 0), ('1284879858410102785', 0), ('1286419905882062848', 0)]
-DEBUG 2021-01-05 14:59:23,320: search_engine_best successfully returned 8 results for query number 25.
-ERROR 2021-01-05 14:59:23,320: Query  25 returned results that are not valid tweet ids: [('1291149266656919553', 1), ('1286109543001395202', 0), ('1282362384649256962', 0), ('1283886897216000001', 0), ('1285945644344061954', 0), ('1286654479580958720', 0), ('1283792121070116864', 0), ('1286050107272491008', 0)]
-ERROR 2021-01-05 14:59:23,320: Query 26 with keywords 'masks do not cause oxygen deficiency' returned no results.
-ERROR 2021-01-05 14:59:23,320: Query 27 with keywords 'Masks don't cause CO2 intoxication.' returned no results.
-DEBUG 2021-01-05 14:59:23,321: search_engine_best successfully returned 8 results for query number 28.
-ERROR 2021-01-05 14:59:23,321: Query  28 returned results that are not valid tweet ids: [('1291149266656919553', 1), ('1286109543001395202', 0), ('1282362384649256962', 0), ('1283886897216000001', 0), ('1285945644344061954', 0), ('1286654479580958720', 0), ('1283792121070116864', 0), ('1286050107272491008', 0)]
-ERROR 2021-01-05 14:59:23,321: Query 29 with keywords 'coin shortage coronavirus' returned no results.
-ERROR 2021-01-05 14:59:23,321: Query 30 with keywords 'not wear masks while exercising' returned no results.
-ERROR 2021-01-05 14:59:23,321: Query 31 with keywords 'hydroxychloroquine treating SARS' returned no results.
-DEBUG 2021-01-05 14:59:23,322: search_engine_best successfully returned 12 results for query number 32.
-ERROR 2021-01-05 14:59:23,322: Query  32 returned results that are not valid tweet ids: [('1281005743856992258', 1), ('1280945978137145344', 1), ('1281002239021236229', 1), ('1281001415272472576', 1), ('1281184688053391360', 1), ('1281081586134347776', 1), ('1281040156640731136', 1), ('1281041147608084480', 1), ('1281053698886635521', 1), ('1281041521765167107', 1)]
-DEBUG 2021-01-05 14:59:23,322: search_engine_best successfully returned 12 results for query number 33.
-ERROR 2021-01-05 14:59:23,322: Query  33 returned results that are not valid tweet ids: [('1281005743856992258', 1), ('1280945978137145344', 1), ('1281002239021236229', 1), ('1281001415272472576', 1), ('1281184688053391360', 1), ('1281081586134347776', 1), ('1281040156640731136', 1), ('1281041147608084480', 1), ('1281053698886635521', 1), ('1281041521765167107', 1)]
-ERROR 2021-01-05 14:59:23,322: Query 34 with keywords 'wearing masks proven ineffective' returned no results.
-DEBUG 2021-01-05 14:59:23,323: search_engine_best successfully returned 11 results for query number 35.
-ERROR 2021-01-05 14:59:23,323: Query  35 returned results that are not valid tweet ids: [('1284367182890012674', 1), ('1286138136670744576', 0), ('1285963261683343362', 0), ('1282570654865338368', 0), ('1281681095185125385', 0), ('1280979197872214024', 0), ('1284542288983719936', 0), ('1287330191832948736', 0), ('1284879858410102785', 0), ('1286419905882062848', 0)]
-INFO 2021-01-05 14:59:23,324: idx_bench.pkl found!
-ERROR 2021-01-05 14:59:23,324: The following error occured while testing the module search_engine_best.
-ERROR 2021-01-05 14:59:23,325: [Errno 2] No such file or directory: 'idx_bench.pkl.pkl'
+INFO 2021-01-05 15:12:17,439: Successfully imported module search_engine_best.
+INFO 2021-01-05 15:12:17,571: loading projection weights from GoogleNews-vectors-negative300.bin
+DEBUG 2021-01-05 15:12:17,571: {'uri': 'GoogleNews-vectors-negative300.bin', 'mode': 'rb', 'buffering': -1, 'encoding': None, 'errors': None, 'newline': None, 'closefd': True, 'opener': None, 'ignore_ext': False, 'transport_params': None}
+INFO 2021-01-05 15:12:17,769: loaded (20000, 300) matrix from GoogleNews-vectors-negative300.bin
+INFO 2021-01-05 15:12:17,769: loading projection weights from GoogleNews-vectors-negative300.bin
+DEBUG 2021-01-05 15:12:17,769: {'uri': 'GoogleNews-vectors-negative300.bin', 'mode': 'rb', 'buffering': -1, 'encoding': None, 'errors': None, 'newline': None, 'closefd': True, 'opener': None, 'ignore_ext': False, 'transport_params': None}
+INFO 2021-01-05 15:12:19,917: loaded (300000, 300) matrix from GoogleNews-vectors-negative300.bin
+DEBUG 2021-01-05 15:12:21,722: Building the index in search_engine_best for benchmark data took 1.7295974110000003 seconds.
+DEBUG 2021-01-05 15:12:21,723: search_engine_best successfully returned 32 results for the query 'bioweapon'.
+DEBUG 2021-01-05 15:12:21,742: search_engine_best successfully returned 816 results for query number 1.
+DEBUG 2021-01-05 15:12:21,858: search_engine_best successfully returned 4990 results for query number 2.
+DEBUG 2021-01-05 15:12:21,968: search_engine_best successfully returned 5209 results for query number 3.
+DEBUG 2021-01-05 15:12:21,987: search_engine_best successfully returned 347 results for query number 4.
+DEBUG 2021-01-05 15:12:21,995: search_engine_best successfully returned 313 results for query number 5.
+DEBUG 2021-01-05 15:12:22,087: search_engine_best successfully returned 4938 results for query number 6.
+DEBUG 2021-01-05 15:12:22,104: search_engine_best successfully returned 295 results for query number 7.
+DEBUG 2021-01-05 15:12:22,200: search_engine_best successfully returned 5030 results for query number 8.
+DEBUG 2021-01-05 15:12:22,263: search_engine_best successfully returned 2304 results for query number 9.
+DEBUG 2021-01-05 15:12:22,358: search_engine_best successfully returned 5337 results for query number 10.
+DEBUG 2021-01-05 15:12:22,461: search_engine_best successfully returned 4961 results for query number 11.
+DEBUG 2021-01-05 15:12:22,670: search_engine_best successfully returned 5252 results for query number 12.
+DEBUG 2021-01-05 15:12:22,763: search_engine_best successfully returned 4682 results for query number 13.
+DEBUG 2021-01-05 15:12:22,863: search_engine_best successfully returned 5181 results for query number 14.
+DEBUG 2021-01-05 15:12:22,872: search_engine_best successfully returned 50 results for query number 15.
+DEBUG 2021-01-05 15:12:22,883: search_engine_best successfully returned 510 results for query number 16.
+DEBUG 2021-01-05 15:12:22,942: search_engine_best successfully returned 2337 results for query number 17.
+DEBUG 2021-01-05 15:12:22,951: search_engine_best successfully returned 298 results for query number 18.
+DEBUG 2021-01-05 15:12:22,980: search_engine_best successfully returned 1704 results for query number 19.
+DEBUG 2021-01-05 15:12:23,013: search_engine_best successfully returned 1787 results for query number 20.
+DEBUG 2021-01-05 15:12:23,111: search_engine_best successfully returned 5097 results for query number 21.
+DEBUG 2021-01-05 15:12:23,220: search_engine_best successfully returned 5244 results for query number 22.
+DEBUG 2021-01-05 15:12:23,333: search_engine_best successfully returned 4983 results for query number 23.
+DEBUG 2021-01-05 15:12:23,446: search_engine_best successfully returned 5641 results for query number 24.
+DEBUG 2021-01-05 15:12:23,552: search_engine_best successfully returned 4934 results for query number 25.
+DEBUG 2021-01-05 15:12:23,588: search_engine_best successfully returned 1467 results for query number 26.
+DEBUG 2021-01-05 15:12:23,629: search_engine_best successfully returned 1781 results for query number 27.
+DEBUG 2021-01-05 15:12:23,733: search_engine_best successfully returned 4802 results for query number 28.
+DEBUG 2021-01-05 15:12:23,826: search_engine_best successfully returned 5011 results for query number 29.
+DEBUG 2021-01-05 15:12:23,872: search_engine_best successfully returned 1650 results for query number 30.
+DEBUG 2021-01-05 15:12:23,885: search_engine_best successfully returned 527 results for query number 31.
+ERROR 2021-01-05 15:12:23,911: The following error occured while testing the module search_engine_best.
+ERROR 2021-01-05 15:12:23,911: 'Covid'
 Traceback (most recent call last):
-  File "D:/Daniel/School/5th semester/SE_partc/test_part_c_students.py", line 143, in <module>
-    engine.load_index('idx_bench.pkl')
-  File "D:\Daniel\School\5th semester\SE_partc\search_engine_best.py", line 66, in load_index
-    self._indexer.load_index(fn)
-  File "D:\Daniel\School\5th semester\SE_partc\indexer.py", line 81, in load_index
-    utils.load_obj(fn)
-  File "D:\Daniel\School\5th semester\SE_partc\utils.py", line 21, in load_obj
-    with open(name + '.pkl', 'rb') as f:
-FileNotFoundError: [Errno 2] No such file or directory: 'idx_bench.pkl.pkl'
-DEBUG 2021-01-05 14:59:23,325: Total runtime was: 0:00:11.016630
+  File "D:/Daniel/School/5th semester/SE_partc/test_part_c_students.py", line 104, in <module>
+    q_n_res, q_res = engine.search(q_keywords)
+  File "D:\Daniel\School\5th semester\SE_partc\search_engine_best.py", line 95, in search
+    return searcher.search(query,100)
+  File "D:\Daniel\School\5th semester\SE_partc\searcher.py", line 43, in search
+    relevant_docs = self._relevant_docs_from_posting(query_as_list)
+  File "D:\Daniel\School\5th semester\SE_partc\searcher.py", line 58, in _relevant_docs_from_posting
+    tweet_arr = self._indexer.inverted_idx[term][1]
+KeyError: 'Covid'
+DEBUG 2021-01-05 15:12:23,912: Total runtime was: 0:00:15.765902

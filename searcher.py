@@ -6,7 +6,7 @@ from scipy import spatial
 
 from ranker import Ranker
 import utils
-
+from gensim.models import KeyedVectors
 
 # DO NOT MODIFY CLASS NAME
 class Searcher:
@@ -20,6 +20,7 @@ class Searcher:
         self._indexer = indexer
         self._ranker = Ranker()
         self._model = model
+        self.index_word_set = self._model.wv.index2word
         self.vector_dictionary = {}
 
     # DO NOT MODIFY THIS SIGNATURE
@@ -61,14 +62,15 @@ class Searcher:
                 tweet_id = tup[1]
                 relevant_docs[tweet_id] = [0,0,0]
                 relevant_docs[tweet_id][0] = self.CossimVectors(query_as_list,self._indexer.inverted_idx[tweet_id][0])
-                # relevant_docs[tweet_id][1] = self.Word2VecSim(query_as_list,self._indexer.postingVector[tweet_id])
-                print(relevant_docs[tweet_id][0])
-                print(relevant_docs[tweet_id][1])
+                #print(query_as_list,self._indexer.inverted_idx[tweet_id][0])
+                relevant_docs[tweet_id][1] = self.Word2VecSim(query_as_list,self._indexer.inverted_idx[tweet_id][3])
+                # print(f"the size of similiarity is {relevant_docs[tweet_id][1]}")
                 # relevant_docs[tweet_id][2] = (relevant_docs[tweet_id][0]+relevant_docs[tweet_id][1])/2
-                if relevant_docs[tweet_id][0] >= 0.25:
-                    relevant_docs[tweet_id][2] = 1
-                else:
-                    relevant_docs[tweet_id][2] = 0
+                # if relevant_docs[tweet_id][0] >= 0.25:
+                #     relevant_docs[tweet_id][2] = 1
+                # else:
+                #     relevant_docs[tweet_id][2] = 0
+                relevant_docs[tweet_id][2] = 1
         return relevant_docs
 
     def average_vector(self, dictionary):
@@ -80,14 +82,8 @@ class Searcher:
                 if word in self.vector_dictionary:
                     vector = np.add(vector, self.vector_dictionary[word])
                 elif word in self.index_word_set:
-                    word_counter += 1
                     self.vector_dictionary[word] = self.model[word]
                     vector = np.add(vector, self.model[word])  ##adding vectors
-            if (word_counter > 0):
-                vector = np.divide(vector, word_counter)
-
-            else:
-                return np.zeros((300,))
         except:
             tmp = 0
         return vector
@@ -95,13 +91,20 @@ class Searcher:
 
     def Word2VecSim(self,query,doc):
 
+        #print(doc)
         zero_vector = np.zeros((300,))
         query_vector = self.average_vector(query)
-
+        # print(f"query vector      :{query_vector}")
         if np.array_equal(zero_vector, doc):
             return 0
         else:
-            return 1 - spatial.distance.cosine(doc, query_vector)
+            try:
+                return 1 - spatial.distance.cosine(doc, query_vector)
+            except:
+                print(doc)
+                print("///////")
+                print(query_vector)
+                exit()
 
 
     def CossimVectors(self,query,doc):

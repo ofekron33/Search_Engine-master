@@ -67,7 +67,7 @@ class SearchEngine:
 
     # DO NOT MODIFY THIS SIGNATURE
     # You can change the internal implementation as you see fit.
-    def load_precomputed_model(self):
+    def load_precomputed_model(self, model_dir=None):
         """
         Loads a pre-computed model (or models) so we can answer queries.
         This is where you would load models like word2vec, LSI, LDA, etc. and
@@ -92,7 +92,7 @@ class SearchEngine:
        # searcher = Searcher(self._parser, self._indexer, model=self.model)
         searcher = Searcher(self._parser, self._indexer, model=self.model)
 
-        return searcher.search(query,100)
+        return searcher.search(query)
 
 def main():  # (corpus_path,output_path,stemming,queries,num_docs_to_retrieve):
     config = ConfigClass()

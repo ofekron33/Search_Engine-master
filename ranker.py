@@ -13,7 +13,7 @@ class Ranker:
         :param relevant_docs: dictionary of documents that contains at least one term from the query.
         :return: sorted list of documents by score
         """
-        ranked_results = sorted(relevant_docs.items(), key=lambda item: item[1][0], reverse=True)
+        ranked_results = sorted(relevant_docs.items(), key=lambda item: item[1][1], reverse=True)
         if k is not None:
             ranked_results = ranked_results[:k]
 

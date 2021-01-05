@@ -11,7 +11,7 @@ class Indexer:
     def __init__(self, config):
         self.vector_dictionary = {}
         self.inverted_idx = {}
-        self.model =KeyedVectors.load_word2vec_format("GoogleNews-vectors-negative300.bin", binary=True, limit= 20000)
+        self.model =KeyedVectors.load_word2vec_format("GoogleNews-vectors-negative300.bin", binary=True, limit= 300000)
         self.postingDict = {}
         self.postingVector = {}
         self.index_word_set = self.model.wv.index2word
@@ -43,7 +43,7 @@ class Indexer:
                 self.inverted_idx[term][0][0] += 1
                 self.inverted_idx[term][0][2] += document_dictionary[term]
                 self.inverted_idx[term][1].append((document_dictionary[term] / max_tf, document.tweet_id))
-        self.postingDict[document.tweet_id] = (document.term_doc_dictionary, document.max_tf, document.hashtag_arr)
+        self.postingDict[document.tweet_id] = (document.term_doc_dictionary, document.max_tf, document.hashtag_arr,self.average_vector(document.term_doc_dictionary))
    #     self.postingVector[document.tweet_id] = self.average_vector(document.term_doc_dictionary)
         self.doc_num += 1
 
@@ -59,16 +59,10 @@ class Indexer:
                 if word in self.vector_dictionary:
                     vector=np.add(vector,self.vector_dictionary[word])
                 elif word in self.index_word_set:
-                    word_counter+=1
                     self.vector_dictionary[word]=self.model[word]
                     vector = np.add(vector, self.model[word])  ##adding vectors
-            if (word_counter > 0):
-                vector = np.divide(vector, word_counter)
-
-            else:
-               return np.zeros((300,))
         except:
-                 tmp=0
+            tmp = 0
         return vector
     # DO NOT MODIFY THIS SIGNATURE
     # You can change the internal implementation as you see fit.
@@ -78,7 +72,7 @@ class Indexer:
         Input:
             fn - file name of pickled index.
         """
-        utils.load_obj(fn)
+        self.inverted_idx = utils.load_obj(fn)
     # DO NOT MODIFY THIS SIGNATURE
     # You can change the internal implementation as you see fit.
     def save_index(self, fn):

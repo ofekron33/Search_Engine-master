@@ -92,7 +92,7 @@ class SearchEngine:
        # searcher = Searcher(self._parser, self._indexer, model=self.model)
         searcher = Searcher(self._parser, self._indexer, model=self.model)
 
-        return searcher.search(query,100)
+        return searcher.search(query)
 
 def main():  # (corpus_path,output_path,stemming,queries,num_docs_to_retrieve):
     config = ConfigClass()

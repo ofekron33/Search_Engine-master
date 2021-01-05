@@ -47,7 +47,7 @@ class SearchEngine:
             # index the document data
             self._indexer.add_new_doc(parsed_document)
 
-        utils.save_obj(self._indexer.inverted_idx,"inverted_index")
+        utils.save_obj(self._indexer.inverted_idx,"idx_bench")
 
         utils.save_obj(self._indexer.postingVector,"postingVec")
         end = time.time()

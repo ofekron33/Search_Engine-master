@@ -43,7 +43,7 @@ class Indexer:
                 self.inverted_idx[term][0][0] += 1
                 self.inverted_idx[term][0][2] += document_dictionary[term]
                 self.inverted_idx[term][1].append((document_dictionary[term] / max_tf, document.tweet_id))
-        self.inverted_idx[document.tweet_id] = (document.term_doc_dictionary, document.max_tf, document.hashtag_arr)
+        self.postingDict[document.tweet_id] = (document.term_doc_dictionary, document.max_tf, document.hashtag_arr)
    #     self.postingVector[document.tweet_id] = self.average_vector(document.term_doc_dictionary)
         self.doc_num += 1
 
@@ -104,16 +104,23 @@ class Indexer:
         Return the posting list from the index for a term.
         """
         return self.postingDict[term] if self._is_term_exist(term) else []
+
     def IDF(self):
         for key in self.inverted_idx.keys():
-            if(key=="1280921542243659776"):
-                tmp=0
-            print(key)
             idf = self.doc_num/self.inverted_idx[key][0][0]
             idf = math.log(idf,2)
             self.inverted_idx[key][0][1] = idf
 
+    def merge_dicts(self):
+        merged_dict = {}
+        for key in self.inverted_idx.keys():
+            merged_dict[key] = self.inverted_idx[key]
+        for key in self.postingDict.keys():
+            merged_dict[key] = self.postingDict[key]
+        self.inverted_idx = merged_dict
+        self.postingDict = {}
     def end_indexer(self):
         self.IDF()
+        self.merge_dicts()
         utils.save_obj(self.inverted_idx,"idx_bench")
-        utils.save_obj(self.postingVector,"vectors")
+        #utils.save_obj(self.postingVector,"vectors")

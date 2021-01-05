@@ -95,6 +95,7 @@ class Parse:
             else:
                 self.enter_dic(terms[index])
                 index = index + 1
+        # return terms
 
     def parse_doc(self, doc_as_list):
         """

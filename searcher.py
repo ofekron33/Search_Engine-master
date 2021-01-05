@@ -55,10 +55,14 @@ class Searcher:
                 tweet_id = tup[1]
                 relevant_docs[tweet_id] = [0,0,0]
                 relevant_docs[tweet_id][0] = self.CossimVectors(query_as_list,self._indexer.inverted_idx[tweet_id][0])
-                relevant_docs[tweet_id][1] = self.Word2VecSim(query_as_list,self._indexer.postingVector[tweet_id])
+                # relevant_docs[tweet_id][1] = self.Word2VecSim(query_as_list,self._indexer.postingVector[tweet_id])
                 print(relevant_docs[tweet_id][0])
                 print(relevant_docs[tweet_id][1])
-                relevant_docs[tweet_id][2] = (relevant_docs[tweet_id][0]+relevant_docs[tweet_id][1])/2
+                # relevant_docs[tweet_id][2] = (relevant_docs[tweet_id][0]+relevant_docs[tweet_id][1])/2
+                if relevant_docs[tweet_id][0] >= 0.25:
+                    relevant_docs[tweet_id][2] = 1
+                else:
+                    relevant_docs[tweet_id][2] = 0
         return relevant_docs
 
     def average_vector(self, dictionary):
@@ -107,6 +111,6 @@ class Searcher:
     def denumer(self, query , doc):
         denum = 0
         for term in doc.keys():
-            denum += doc[term]^2
+            denum += doc[term]*doc[term]
         denum = math.sqrt(denum)*math.sqrt(len(query))
         return denum

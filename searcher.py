@@ -54,6 +54,7 @@ class Searcher:
         :return: dictionary of relevant documents mapping doc_id to document frequency.
         """
         relevant_docs = {}
+        tmp=3
         for term in query_as_list.keys():
             tweet_arr = self._indexer.inverted_idx[term][1]
             for tup in tweet_arr:

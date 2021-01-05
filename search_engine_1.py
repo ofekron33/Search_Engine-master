@@ -22,7 +22,7 @@ class SearchEngine:
         self._indexer = Indexer(config)
         self.model =KeyedVectors.load_word2vec_format("GoogleNews-vectors-negative300.bin", binary=True, limit= 300000)
         self.num_doc=0
-
+        self.efk=0;
     # DO NOT MODIFY THIS SIGNATURE
     # You can change the internal implementation as you see fit.
     def build_index_from_parquet(self, fn):

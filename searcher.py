@@ -38,8 +38,7 @@ class Searcher:
             and the last is the least relevant result.
         """
         query_as_list = self._parser.parse_query(query)
-        if query == "bioweapon":
-            print(query_as_list)
+        query_as_list = self.create_syno_arr(query_as_list)
 
         relevant_docs = self._relevant_docs_from_posting(query_as_list)
         n_relevant = len(relevant_docs)
@@ -55,39 +54,40 @@ class Searcher:
         :return: dictionary of relevant documents mapping doc_id to document frequency.
         """
         relevant_docs = {}
-        tmp=3
-        for term in query_as_list.keys():
-            tweet_arr = self._indexer.inverted_idx[term][1]
-            for tup in tweet_arr:
-                tweet_id = tup[1]
-                relevant_docs[tweet_id] = [0,0,0]
-                relevant_docs[tweet_id][0] = self.CossimVectors(query_as_list,self._indexer.inverted_idx[tweet_id][0])
-                #print(query_as_list,self._indexer.inverted_idx[tweet_id][0])
-                relevant_docs[tweet_id][1] = self.Word2VecSim(query_as_list,self._indexer.inverted_idx[tweet_id][3])
-                # print(f"the size of similiarity is {relevant_docs[tweet_id][1]}")
-                # relevant_docs[tweet_id][2] = (relevant_docs[tweet_id][0]+relevant_docs[tweet_id][1])/2
-                # if relevant_docs[tweet_id][0] >= 0.25:
-                #     relevant_docs[tweet_id][2] = 1
-                # else:
-                #     relevant_docs[tweet_id][2] = 0
-                relevant_docs[tweet_id][2] = 1
+        queryVec = self.average_vector(query_as_list)
+        for key in query_as_list:
+            if key in self._indexer.inverted_idx.keys():
+                arr = self._indexer.inverted_idx[key][1]
+                for tup in arr:
+                    if tup[1] not in relevant_docs.keys():
+                        tweet_id = tup[1]
+
+                        dictVec = self._indexer.inverted_idx[tweet_id][3]
+                        dist = 1-spatial.distance.cosine(dictVec,queryVec)
+                        relevant_docs[tweet_id] = dist
+
         return relevant_docs
 
     def average_vector(self, dictionary):
         vector = np.zeros((300,))  ##init matrix [0,0,0,0......0 ->300 time]
-        word_counter = 0
 
-        try:
-            for word in dictionary:
-                if word in self.vector_dictionary:
-                    vector = np.add(vector, self.vector_dictionary[word])
-                elif word in self.index_word_set:
-                    self.vector_dictionary[word] = self.model[word]
-                    vector = np.add(vector, self.model[word])  ##adding vectors
-        except:
-            tmp = 0
+
+        for word in dictionary:
+            if word in self.index_word_set:
+                vector = np.add(vector,self._model[word])
+
         return vector
 
+    def create_syno_arr(self,dict):
+        arr = []
+        for key in dict.keys():
+            try:
+                syno_arr = self._model.most_similar(key,topn=4)
+                for syno in syno_arr:
+                    arr.append(syno[0])
+            except:
+                arr.append(key)
+        return arr
 
     def Word2VecSim(self,query,doc):
 
@@ -100,7 +100,7 @@ class Searcher:
         else:
             try:
                 return 1 - spatial.distance.cosine(doc, query_vector)
-            except:
+            except RuntimeWarning:
                 print(doc)
                 print("///////")
                 print(query_vector)
@@ -122,5 +122,11 @@ class Searcher:
         denum = 0
         for term in doc.keys():
             denum += doc[term]*doc[term]
-        denum = math.sqrt(denum)*math.sqrt(len(query))
+        try:
+            denum = math.sqrt(denum)*math.sqrt(len(query))
+        except:
+            print(doc)
+            print("///////")
+            print(query)
+            exit()
         return denum

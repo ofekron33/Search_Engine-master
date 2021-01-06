@@ -11,7 +11,7 @@ class Indexer:
     def __init__(self, config):
         self.vector_dictionary = {}
         self.inverted_idx = {}
-        self.model =KeyedVectors.load_word2vec_format("GoogleNews-vectors-negative300.bin", binary=True, limit= 300000)
+        self.model = KeyedVectors.load_word2vec_format("GoogleNews-vectors-negative300.bin", binary=True, limit=300000)
         self.postingDict = {}
         self.postingVector = {}
         self.index_word_set = self.model.wv.index2word

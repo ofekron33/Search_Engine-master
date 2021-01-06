@@ -11,7 +11,9 @@ class Indexer:
     def __init__(self, config):
         self.vector_dictionary = {}
         self.inverted_idx = {}
-        self.model = KeyedVectors.load_word2vec_format("GoogleNews-vectors-negative300.bin", binary=True, limit=300000)
+        #self.model = KeyedVectors.load_word2vec_format("GoogleNews-vectors-negative300.bin", binary=True, limit=300000)
+        #self.model = KeyedVectors.load_word2vec_format("D:\\Downloads\\modell3.bin", binary=True)
+        self.model = KeyedVectors.load_word2vec_format("D:\\Downloads\\model0601test1a.bin", binary=True)
         self.postingDict = {}
         self.postingVector = {}
         self.index_word_set = self.model.wv.index2word
@@ -52,18 +54,22 @@ class Indexer:
 
         vector = np.zeros((300,))  ##init matrix [0,0,0,0......0 ->300 time]
         word_counter=0
-
-        self.counter+=1
-        try:
-            for word in dictionary:
-                if word in self.vector_dictionary:
-                    vector=np.add(vector,self.vector_dictionary[word])
-                elif word in self.index_word_set:
-                    self.vector_dictionary[word]=self.model[word]
-                    vector = np.add(vector, self.model[word])  ##adding vectors
-        except:
-            tmp = 0
-        return vector
+        words = [word for word in dictionary if word in self.index_word_set]
+        if len(words) >= 1:
+            return np.mean(self.model[words], axis=0)
+        else:
+            return np.zeros((300,))
+        # self.counter+=1
+        # try:
+        #     for word in dictionary:
+        #         if word.lower() in self.vector_dictionary:
+        #             vector=np.add(vector,self.vector_dictionary[word])
+        #         elif word.lower() in self.index_word_set:
+        #             self.vector_dictionary[word]=self.model[word]
+        #             vector = np.add(vector, self.model[word])  ##adding vectors
+        # except:
+        #     tmp = 0
+        # return vector
     # DO NOT MODIFY THIS SIGNATURE
     # You can change the internal implementation as you see fit.
     def load_index(self, fn):

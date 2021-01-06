@@ -7,10 +7,13 @@ from math import log
 from document import Document_to_index
 import urllib3
 import spacy
+#from spellchecker import SpellChecker
 class Parse:
 
     def __init__(self):
         self.counter=0
+ #       self.spellcheck=SpellChecker()
+  #      self.spell_arr=['CDCs','MI6','lmfao','bbc','5G','IMO','ffs','tv','9th','wuhan','covid','rt','Co2','dr','fauci','CDC','cdc','co2','c02','Dr','faucis','PM','pm','ppp']
         self.stop_words = frozenset(stopwords.words('english'))
         self.added_stop_words=["I","The","rT","RT","rt","http","https",'t.co'," ","","twitter.com","-","www","_","&amp","##","###","####","#####","19"]
         self.check=0
@@ -20,7 +23,7 @@ class Parse:
         self.dic={}
         self.hashtag_arr=[]
         self.usa_abbreviations = {"AL": "Alabama", "AK": "Alaska", "AZ": "Arizona", "AR": "Arkansas",
-                                  "CA": "California",
+                                  "CA": "California","NYC":"new york city","nyc":"new york city",
                                   "CT": "Connecticut", "DC": "Washington DC", "DE": "Deleware", "FL": "Florida",
                                   "GA": "Georgia", "HI": "Hawaii", "IL": "Illinios", "IA": "Iowa",
                                   "KS": "Kansas", "KY": "Kentucky", "MD": "Maryland", "MA": "Massachusetts",
@@ -33,10 +36,10 @@ class Parse:
                                   "Corona": "cornavirus", "corona": "cornavirus", "CORONA": "coronavirus",
                                   "COVID19": "coronavirus", "COVID-19": "cornavirus",
                                   "ND": "North Dakota", "OH": "Ohio", "PA": "Pennsylvania", "RI": "Rhode Island",
-                                  "SC": "South Carolina", "SD": "South Dakota", "TN": "Tennessee",
+                                  "SC": "South Carolina", "SD": "South Dakota", "TN": "Tennessee","MSM":"methylsulfonylmethane",
                                   "TX": "Texas", "UT": "Utah", "VT": "Vermont", "VA": "Virgina", "WA": "Washington",
                                   "WV": "West Virginia", "WI": "Wisconsin", "WY": "Wyoming", "USA": "United States",
-                                  "IG": "Instagram", "FB": "Facebook"}
+                                  "IG": "Instagram", "FB": "Facebook",'HCQ':'hydroxychloroquine','hcq':'hydroxychloroquine'}
 
     def parse_sentence(self, text):
         """
@@ -56,6 +59,7 @@ class Parse:
         #    if(e.text not in entity):
          #       entity_test.append(e.text)
         terms=txt1.split()
+       # terms=self.test(terms)
         index=0
         while(index<len(terms)):
         #    w=terms[index].lower()
@@ -93,6 +97,7 @@ class Parse:
                         self.enter_dic(w)
                         index = index + 1
             else:
+          #      w=self.test(terms[index])
                 self.enter_dic(terms[index])
                 index = index + 1
         # return terms
@@ -117,7 +122,6 @@ class Parse:
             full_text_without_url.lower()
 
         self.parse_sentence(full_text_without_url)
-
 
         if (len(self.dic) > 0):
             max_tf = max(self.dic.values())
@@ -381,3 +385,16 @@ class Parse:
                     dic[terms[index]] += 1
                 index = index + 1
         return dic
+    def test(self,word):
+        if(word.lower() in self.spell_arr):
+            return word
+        if(word.lower()=="governm"):
+            return "government"
+        else:
+            tmp=self.spellcheck.correction(word.lower())
+            if(word.lower()!=tmp):
+                print("****************")
+                print("the original word was:"+word)
+                print("spell checker returned the word:" + tmp)
+                print("****************")
+        return word

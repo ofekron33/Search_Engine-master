@@ -20,7 +20,9 @@ class SearchEngine:
         self._config = config
         self._parser = Parse()
         self._indexer = Indexer(config)
-        self.model =KeyedVectors.load_word2vec_format("GoogleNews-vectors-negative300.bin", binary=True, limit= 20000)
+        #self.model =KeyedVectors.load_word2vec_format("GoogleNews-vectors-negative300.bin", binary=True, limit= 20000)
+        #self.model = KeyedVectors.load_word2vec_format("D:\\Downloads\\modell3.bin", binary=True)
+        self.model = KeyedVectors.load_word2vec_format("D:\\Downloads\\model0601test1a.bin", binary=True)
         self.num_doc=0
 
     # DO NOT MODIFY THIS SIGNATURE
@@ -101,7 +103,7 @@ def main():  # (corpus_path,output_path,stemming,queries,num_docs_to_retrieve):
     arr2=get_all_parquet_files(os.getcwd())
     s=SearchEngine()
     s.build_index_from_parquet(arr2[3])
-    s.search("Covid")
+    s.search("Covid flu")
 
 
 def get_all_parquet_files(dir):

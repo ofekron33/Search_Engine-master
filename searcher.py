@@ -37,10 +37,17 @@ class Searcher:
             a list of tweet_ids where the first element is the most relavant 
             and the last is the least relevant result.
         """
-        query_as_list = self._parser.parse_query(query)
-        query_as_list = self.create_syno_arr(query_as_list)
+        query_as_list = self._parser.parse_query(query) ### line 41  override the existing array without adding the query words
+        query_as_list1 = self.create_syno_arr(query_as_list)
+        query_arr=[]
+        for key in query_as_list.keys():
+            if key not in query_arr:
+                query_arr.append(key)
+        for i in query_as_list1:
+            if i not in query_arr:
+                query_arr.append(i)
 
-        relevant_docs = self._relevant_docs_from_posting(query_as_list)
+        relevant_docs = self._relevant_docs_from_posting(query_arr)
         n_relevant = len(relevant_docs)
         ranked_doc_ids = Ranker.rank_relevant_docs(relevant_docs)
         return n_relevant, ranked_doc_ids
@@ -70,11 +77,18 @@ class Searcher:
 
     def average_vector(self, dictionary):
         vector = np.zeros((300,))  ##init matrix [0,0,0,0......0 ->300 time]
+        words = [word for word in dictionary if word in self.index_word_set]
+        if len(words) >= 1:
+            return np.mean(self._model[words], axis=0)
+        else:
+            return np.zeros((300,))
 
-
-        for word in dictionary:
-            if word in self.index_word_set:
-                vector = np.add(vector,self._model[word])
+        # for word in dictionary:
+        #     counter=0
+        #     if word in self.index_word_set:
+        #         counter+=1
+        #         vector = np.add(vector,self._model[word])
+        #     ##why not devide by number of words?
 
         return vector
 
@@ -84,7 +98,10 @@ class Searcher:
             try:
                 syno_arr = self._model.most_similar(key,topn=4)
                 for syno in syno_arr:
-                    arr.append(syno[0])
+                    if '@' in syno[0]:
+                        continue
+                    else:
+                        arr.append(syno[0])
             except:
                 arr.append(key)
         return arr

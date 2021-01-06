@@ -325,7 +325,7 @@ class Parse:
         index = 0
         while (index < len(terms)):
             #    w=terms[index].lower()
-            usa_abbrev = self.usa_abbreviations.get(terms[index].upper(), "Never")
+            usa_abbrev=self.usa_abbreviations.get(terms[index].upper(),"Never")
             if (terms[index] in self.stop_words):
                 index = index + 1
                 continue

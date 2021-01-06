@@ -4,8 +4,10 @@ import pandas as pd
 from reader import ReadFile
 from configuration import ConfigClass
 from parser_module import Parse
+from gensim.models import KeyedVectors
 from indexer import Indexer
-from searcher2 import Searcher2
+from searcher import Searcher
+
 import os
 import timeit
 
@@ -20,7 +22,7 @@ class SearchEngine:
         self._config = config
         self._parser = Parse()
         self._indexer = Indexer(config)
-        self._model = None
+        self.model = KeyedVectors.load_word2vec_format("D:\\Downloads\\model0601test1a.bin", binary=True)
         self.num_doc=0
 
     # DO NOT MODIFY THIS SIGNATURE
@@ -86,25 +88,18 @@ class SearchEngine:
             a list of tweet_ids where the first element is the most relavant
             and the last is the least relevant result.
         """
-        s = searcher(self._parser, self._indexer)
-        return s.search(query)
+        searcher = Searcher(self._parser, self._indexer, model=self.model)
+        return searcher.search2(query)
 import utils
 
 def main():  # (corpus_path,output_path,stemming,queries,num_docs_to_retrieve):
     config = ConfigClass()
     r = ReadFile(corpus_path=config.get__corpusPath())
-    arr2 = get_all_parquet_files(os.getcwd())
-    s = SearchEngine()
+    #arr1=get_all_parquet_files("D:\Downloads\Data")
+    arr2=get_all_parquet_files(os.getcwd())
+    s=SearchEngine()
     s.build_index_from_parquet(arr2[3])
-        # for i in arr2:
-        #     s.build_index_from_parquet(i)
-        #s.build_index_from_parquet("D:\\Daniel\\School\\5th semester\\SEPC\\data\\benchmark_data_train.snappy.parquet")
-    print("please enter query to search :")
-    query = input()
-    start = time.time()
-    print(s.search(query))
-    end = time.time()
-    print("time took for query is " + str(end - start))
+    s.search("Covid flu")
 
     tmp=3
     # for i in arr2:

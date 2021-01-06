@@ -34,7 +34,8 @@ class Indexer:
         max_tf = document.max_tf
         if max_tf == 0:
             return
-
+        if document.tweet_id=='1280933396273942531':
+            tmp=12
         uniqueCounter = document.unique_words
         #        tweet_length = len(document.full_text)
         for term in document_dictionary.keys():  # in the inverted index we have list of tweet tuples with tf with pointer to appropriate file

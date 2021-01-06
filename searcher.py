@@ -7,6 +7,8 @@ from scipy import spatial
 from ranker import Ranker
 import utils
 from gensim.models import KeyedVectors
+from nltk.corpus import wordnet as wn
+
 
 # DO NOT MODIFY CLASS NAME
 class Searcher:
@@ -39,13 +41,11 @@ class Searcher:
         """
         query_as_list = self._parser.parse_query(query) ### line 41  override the existing array without adding the query words
         query_as_list1 = self.create_syno_arr(query_as_list)
-        query_arr=[]
-        for key in query_as_list.keys():
-            if key not in query_arr:
-                query_arr.append(key)
-        for i in query_as_list1:
-            if i not in query_arr:
-                query_arr.append(i)
+        query_arr=query_as_list.keys()
+        if(len(query_as_list1)>0):
+            for i in query_as_list1:
+                if i not in query_arr:
+                    query_arr.append(i)
 
         relevant_docs = self._relevant_docs_from_posting(query_arr)
         n_relevant = len(relevant_docs)
@@ -66,9 +66,10 @@ class Searcher:
             if key in self._indexer.inverted_idx.keys():
                 arr = self._indexer.inverted_idx[key][1]
                 for tup in arr:
+
                     if tup[1] not in relevant_docs.keys():
                         tweet_id = tup[1]
-
+                        if(tweet_id==1280933396273942531):
                         dictVec = self._indexer.inverted_idx[tweet_id][3]
                         dist = 1-spatial.distance.cosine(dictVec,queryVec)
                         relevant_docs[tweet_id] = dist
@@ -147,3 +148,30 @@ class Searcher:
             print(query)
             exit()
         return denum
+    def search2(self,query):
+        query_as_list = self._parser.parse_query(query) ### line 41  override the existing array without adding the query words
+        query_as_list1 = self.word_net_synonyms(query_as_list)
+        query_arr=query_as_list.keys()
+        if (len(query_as_list1) > 0):
+            for i in query_as_list1:
+                if i not in query_arr:
+                    query_arr.append(i)
+
+
+        relevant_docs = self._relevant_docs_from_posting(query_arr)
+        n_relevant = len(relevant_docs)
+        ranked_doc_ids = Ranker.rank_relevant_docs(relevant_docs)
+        return n_relevant, ranked_doc_ids
+    def word_net_synonyms(self, query):
+        synonyms = []
+        for i in query:
+            try:
+                synonyms[i] = []
+                for synset in wn.synsets(i):
+                    for lemma in synset.lemmas():
+                        val = synonyms[i]
+                        if (lemma.name() not in val and "_" not in lemma.name()):
+                            synonyms[i].append(lemma.name())
+            except:
+                    continue
+        return synonyms

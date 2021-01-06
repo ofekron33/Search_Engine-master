@@ -13,7 +13,6 @@ import utils
 
 # DO NOT CHANGE THE CLASS NAME
 class SearchEngine:
-
     # DO NOT MODIFY THIS SIGNATURE
     # You can change the internal implementation, but you must have a parser and an indexer.
     def __init__(self, config=None):

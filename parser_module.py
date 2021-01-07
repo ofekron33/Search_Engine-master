@@ -48,27 +48,16 @@ class Parse:
         :return:
         """
         txt1=self.multiple_replace(text)
-  #      doc=self.nlp(txt1)
-  #      doc_test=self.nlp(text)
-   #     entity=[]
-    #    entity_test=[]
-     #   for e in doc.ents:
-      #      if(e.text not in entity):
-       #         entity.append(e.text)
-       # for e in doc_test.ents:
-        #    if(e.text not in entity):
-         #       entity_test.append(e.text)
+
         terms=txt1.split()
-       # terms=self.test(terms)
         index=0
         while(index<len(terms)):
-        #    w=terms[index].lower()
             usa_abbrev=self.usa_abbreviations.get(terms[index].upper(),"Never")
             if(terms[index] in self.stop_words or terms[index] in  self.added_stop_words):
                 index=index+1
                 continue
             elif (terms[index][0] == '@' and len(terms[index])>1):  # @rule
-                    self.enter_dic(terms[index])
+            #   self.enter_dic(terms[index])
                     index = index + 1
                     continue
             elif (terms[index][0] == '#'):  # #rule
@@ -96,6 +85,8 @@ class Parse:
                         w = self.parse_numbers(terms[index],'')
                         self.enter_dic(w)
                         index = index + 1
+            elif (len(terms[index])<=2):
+                    index+=1
             else:
           #      w=self.test(terms[index])
                 self.enter_dic(terms[index])
@@ -129,42 +120,13 @@ class Parse:
         else:
             max_tf = 0
             unique_words = 0
-
         url = doc_as_list[3]
-        if (url is not None) and (url != '{}'):
-            if (len(url) > 2):
-                tmp = url.split('"')
-                for url in tmp:
-                    if ("http" in url):
-                        tok_url = self.parse_url(url)
-                        for term in tok_url:
-                            if (term != "''" or term != "," and len(term) >= 1):
-                                if(term not in self.added_stop_words):
-                                    if (term not in self.stop_words):
-                                        self.enter_dic(term)
         retweet_text = doc_as_list[4]
         retweet_url = doc_as_list[5]
-        if (retweet_url is not None) and ("http" in retweet_url):
-            if (len(url) > 2):
-                tmp = url.split('"')
-                for url in tmp:
-                    if ("http" in url):
-                        tok_url = self.parse_url(url)
-                        for term in tok_url:
-                            if (term not in self.added_stop_words):
-                                if (term not in self.stop_words):
-                                    self.enter_dic(term.lower())
+
         quote_text = doc_as_list[6]
         quote_url = doc_as_list[7]
-        if (quote_url is not None) and ("http" in quote_url):
-            #     tmp = quote_url.partition("https")[1] + quote_url.partition("https")[2]
-            u = re.findall("(?P<url>https?://[^\s]+)", quote_url)
-            for match in u:
-                tok_url = self.parse_url(match)
-                for term in tok_url:
-                    if (term not in self.added_stop_words):
-                        if (term not in self.stop_words):
-                            self.enter_dic(term.lower())
+
         doc_length =len(full_text)
        # document = Document(tweet_id, tweet_date, full_text, url, retweet_text, retweet_url, quote_text,quote_url, term_dict, doc_length)
         document_to_index= Document_to_index(tweet_id,self.dic,max_tf,unique_words,doc_length,self.hashtag_arr)
@@ -263,11 +225,11 @@ class Parse:
     #     return full_text_without_url
 
     def enter_dic(self,term):
-        if(term not in self.stop_words or term not in self.added_stop_words):
-            if(term not in self.dic.keys()):
-                self.dic[term]=1
+        if(term.lower() not in self.stop_words or term.lower() not in self.added_stop_words):
+            if(term.lower() not in self.dic.keys()):
+                self.dic[term.lower()]=1
             else:
-                self.dic[term]+=1
+                self.dic[term.lower()]+=1
 
     def parse_url(self, url):
         """

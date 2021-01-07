@@ -12,10 +12,9 @@ class Indexer:
         self.vector_dictionary = {}
         self.inverted_idx = {}
         #self.model = KeyedVectors.load_word2vec_format("GoogleNews-vectors-negative300.bin", binary=True, limit=300000)
-        #self.model = KeyedVectors.load_word2vec_format("D:\\Downloads\\word2vecCBOW1.bin", binary=True)
-   #     self.model = KeyedVectors.load_word2vec_format("D:\\Downloads\\word2vec0702.bin", binary=True)
 
         self.model = KeyedVectors.load_word2vec_format("D:\\Downloads\\model0601test1a.bin", binary=True)
+    #    self.model = KeyedVectors.load_word2vec_format("D:\\Downloads\\word2vec0702C.bin", binary=True)
 
         self.postingDict = {}
         self.postingVector = {}
@@ -108,6 +107,8 @@ class Indexer:
         return self.postingDict[term] if self._is_term_exist(term) else []
 
     def IDF(self):
+
+        number_of_words=self.inverted_idx.keys()
         for key in self.inverted_idx.keys():
             if(key=="bioweapon"):
                 tmp=22

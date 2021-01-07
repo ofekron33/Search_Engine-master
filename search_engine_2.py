@@ -23,6 +23,8 @@ class SearchEngine:
         self._parser = Parse()
         self._indexer = Indexer(config)
         self.model = KeyedVectors.load_word2vec_format("D:\\Downloads\\model0601test1a.bin", binary=True)
+     #   self.model = KeyedVectors.load_word2vec_format("D:\\Downloads\\word2vec0702.bin", binary=True)
+
         self.num_doc=0
 
     # DO NOT MODIFY THIS SIGNATURE
@@ -39,21 +41,24 @@ class SearchEngine:
         documents_list = df.values.tolist()
         # Iterate over every document in the file
         number_of_documents = 0
-        start = timeit.default_timer()
+        start = time.time()
         for idx, document in enumerate(documents_list):
             # parse the document
             parsed_document = self._parser.parse_doc(document)
             number_of_documents += 1
-            self.num_doc+=1
-            if(self.num_doc%1000):
-                print(self.num_doc)
+            self.num_doc += 1
             print(number_of_documents)
             # index the document data
             self._indexer.add_new_doc(parsed_document)
+
+        utils.save_obj(self._indexer.inverted_idx, "idx_bench")
+
+        utils.save_obj(self._indexer.postingVector, "postingVec")
+        end = time.time()
+        print("time took - " + str(end - start))
+
         print('Finished parsing and indexing.')
-        stop = timeit.default_timer()
-        print('Time: ', stop - start)
-        self._indexer.save_index(self._indexer.inverted_idx)
+        self._indexer.end_indexer()
     # DO NOT MODIFY THIS SIGNATURE
     # You can change the internal implementation as you see fit.
     def load_index(self, fn):

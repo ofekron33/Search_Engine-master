@@ -1,5 +1,6 @@
 import search_engine_best
 import search_engine_2
+import search_engine_1
 import gensim
 from gensim.models import Word2Vec
 from gensim.models.callbacks import CallbackAny2Vec
@@ -22,4 +23,4 @@ if __name__ == '__main__':
             self.epoch += 1
             self.loss_previous_step = loss
     #search_engine_best.main()
-    search_engine_2.main()
+    search_engine_1.main()

@@ -1,14 +1,17 @@
 import math
 import time
+from spellchecker import SpellChecker
 
 import numpy as np
 from scipy import spatial
-
 from ranker import Ranker
 import utils
 from gensim.models import KeyedVectors
 from nltk.corpus import wordnet as wn
+from nltk.corpus import lin_thesaurus as t
+import nltk
 
+#nltk.download('lin_thesaurus')
 
 # DO NOT MODIFY CLASS NAME
 class Searcher:
@@ -19,6 +22,9 @@ class Searcher:
     # MAKE SURE YOU DON'T LOAD A MODEL INTO MEMORY HERE AS THIS IS RUN AT QUERY TIME.
     def __init__(self, parser, indexer, model=None):
         self._parser = parser
+        self.spellcheck=SpellChecker()
+        self.spell_arr=['MI6','lmfao','bbc','5G','IMO','ffs','tv','9th','wuhan','covid','rt','Co2','dr','fauci','CDC','cdc','co2','c02','Dr','faucis','PM','pm','ppp']
+
         self._indexer = indexer
         self._ranker = Ranker()
         self._model = model
@@ -41,7 +47,10 @@ class Searcher:
         """
         query_as_list = self._parser.parse_query(query) ### line 41  override the existing array without adding the query words
         query_as_list1 = self.create_syno_arr(query_as_list)
-        query_arr=query_as_list.keys()
+        query_arr=[]
+        for i in query_as_list.keys():
+            if i not in query_arr:
+                query_arr.append(i)
         if(len(query_as_list1)>0):
             for i in query_as_list1:
                 if i not in query_arr:
@@ -60,19 +69,22 @@ class Searcher:
         :param query_as_list: parsed query tokens
         :return: dictionary of relevant documents mapping doc_id to document frequency.
         """
+        zero_vector=np.zeros((300,))
         relevant_docs = {}
         queryVec = self.average_vector(query_as_list)
         for key in query_as_list:
             if key in self._indexer.inverted_idx.keys():
                 arr = self._indexer.inverted_idx[key][1]
                 for tup in arr:
-
                     if tup[1] not in relevant_docs.keys():
                         tweet_id = tup[1]
-                        if(tweet_id==1280933396273942531):
                         dictVec = self._indexer.inverted_idx[tweet_id][3]
-                        dist = 1-spatial.distance.cosine(dictVec,queryVec)
-                        relevant_docs[tweet_id] = dist
+                        if (np.array_equal(zero_vector, dictVec)):
+                            tmp=3
+                        else:
+                            dist = 1-spatial.distance.cosine(dictVec,queryVec)
+                            if dist>0.7:
+                                relevant_docs[tweet_id] = dist
 
         return relevant_docs
 
@@ -97,7 +109,7 @@ class Searcher:
         arr = []
         for key in dict.keys():
             try:
-                syno_arr = self._model.most_similar(key,topn=4)
+                syno_arr = self._model.most_similar(key,topn=6)
                 for syno in syno_arr:
                     if '@' in syno[0]:
                         continue
@@ -151,17 +163,60 @@ class Searcher:
     def search2(self,query):
         query_as_list = self._parser.parse_query(query) ### line 41  override the existing array without adding the query words
         query_as_list1 = self.word_net_synonyms(query_as_list)
-        query_arr=query_as_list.keys()
-        if (len(query_as_list1) > 0):
+        query_arr=[]
+        for i in query_as_list.keys():
+            if i not in query_arr:
+                query_arr.append(i)
+        if (len(query_as_list1)>0):
             for i in query_as_list1:
                 if i not in query_arr:
                     query_arr.append(i)
-
-
-        relevant_docs = self._relevant_docs_from_posting(query_arr)
+        query_as_list3 = self.create_syno_arr_from_arr(query_arr)
+        final_arr=[]
+        if(len(query_as_list3)>0):
+            for i in query_as_list3:
+                if i not in final_arr:
+                    final_arr.append(i)
+        relevant_docs = self._relevant_docs_from_posting(final_arr)
         n_relevant = len(relevant_docs)
         ranked_doc_ids = Ranker.rank_relevant_docs(relevant_docs)
         return n_relevant, ranked_doc_ids
+
+    def search3(self,query):
+        start = time.time()
+        query_as_list = self._parser.parse_query(query)  ### line 41  override the existing array without adding the query words
+     #   query_spell_check=self.spell_checker(query_as_list)
+        # query_as_list1 = self.thesaurus_synonyms(query_spell_check)
+        query_as_list3 =self.thesaurus_synonyms(query_as_list)
+   #     final_arr = query_spell_check
+     #    final_arr = query_as_list3
+  #      if (len(query_as_list3) > 0):
+   #         for i in query_as_list3:
+    #            if i not in final_arr:
+     #               final_arr.append(i)
+        relevant_docs = self._relevant_docs_from_posting(query_as_list3)
+        n_relevant = len(relevant_docs)
+        ranked_doc_ids = Ranker.rank_relevant_docs(relevant_docs)
+        end = time.time()
+        print("time took - "+str(end-start))
+
+        return n_relevant, ranked_doc_ids
+    def thesaurus_synonyms(self,query):
+        arr=[]
+        for  token in query:
+            t.synonyms(token)
+            t.scored_synonyms(token)
+            t.synonyms(token,fileid="simN.lsp")
+            syn_words=list(t.synonyms(token,fileid="simN.lsp"))
+            if token not in arr:
+                arr.append(token)
+            for syn in syn_words:
+                if syn not in arr:
+                    arr.append(syn)
+        return arr
+
+
+
     def word_net_synonyms(self, query):
         synonyms = []
         for i in query:
@@ -175,3 +230,28 @@ class Searcher:
             except:
                     continue
         return synonyms
+
+    def create_syno_arr_from_arr(self, arr):
+        array=[]
+        for i in arr:
+            try:
+                syno_arr = self._model.most_similar(i, topn=6)
+                for syno in syno_arr:
+                    if '@' in syno[0]:
+                        continue
+                    else:
+                        array.append(syno[0])
+            except:
+               tmp=0
+        for i in arr:
+            array.append(i)
+        return array
+
+    def spell_checker(self,arr):
+        array=[]
+        for i in arr:
+            if(i.lower() in self.spell_arr):
+                array.append(i)
+            else:
+                array.append(self.spellcheck.correction(i.lower()))
+        return array

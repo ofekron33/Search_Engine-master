@@ -12,8 +12,11 @@ class Indexer:
         self.vector_dictionary = {}
         self.inverted_idx = {}
         #self.model = KeyedVectors.load_word2vec_format("GoogleNews-vectors-negative300.bin", binary=True, limit=300000)
-        #self.model = KeyedVectors.load_word2vec_format("D:\\Downloads\\modell3.bin", binary=True)
+        #self.model = KeyedVectors.load_word2vec_format("D:\\Downloads\\word2vecCBOW1.bin", binary=True)
+   #     self.model = KeyedVectors.load_word2vec_format("D:\\Downloads\\word2vec0702.bin", binary=True)
+
         self.model = KeyedVectors.load_word2vec_format("D:\\Downloads\\model0601test1a.bin", binary=True)
+
         self.postingDict = {}
         self.postingVector = {}
         self.index_word_set = self.model.wv.index2word
@@ -34,8 +37,6 @@ class Indexer:
         max_tf = document.max_tf
         if max_tf == 0:
             return
-        if document.tweet_id=='1280933396273942531':
-            tmp=12
         uniqueCounter = document.unique_words
         #        tweet_length = len(document.full_text)
         for term in document_dictionary.keys():  # in the inverted index we have list of tweet tuples with tf with pointer to appropriate file

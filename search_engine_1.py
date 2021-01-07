@@ -10,23 +10,19 @@ from gensim.models import KeyedVectors
 import os
 import utils
 
-
 # DO NOT CHANGE THE CLASS NAME
 class SearchEngine:
-
     # DO NOT MODIFY THIS SIGNATURE
     # You can change the internal implementation, but you must have a parser and an indexer.
     def __init__(self, config=None):
         self._config = config
         self._parser = Parse()
-        #self.model = KeyedVectors.load_word2vec_format("GoogleNews-vectors-negative300.bin", binary=True, limit=200000)
-    #    self.model = KeyedVectors.load_word2vec_format("D:\\Downloads\\modell3.bin", binary=True)
+        self._indexer = Indexer(config)
+        #self.model =KeyedVectors.load_word2vec_format("GoogleNews-vectors-negative300.bin", binary=True, limit= 20000)
         self.model = KeyedVectors.load_word2vec_format("D:\\Downloads\\model0601test1a.bin", binary=True)
-
-        self._indexer = Indexer(self.model)
-
+       # self.model = KeyedVectors.load_word2vec_format("D:\\Downloads\\word2vec0702.bin", binary=True)
         self.num_doc=0
-        self.efk=0;
+
     # DO NOT MODIFY THIS SIGNATURE
     # You can change the internal implementation as you see fit.
     def build_index_from_parquet(self, fn):
@@ -50,6 +46,7 @@ class SearchEngine:
             print(number_of_documents)
             # index the document data
             self._indexer.add_new_doc(parsed_document)
+
 
         utils.save_obj(self._indexer.inverted_idx,"idx_bench")
 
@@ -96,7 +93,7 @@ class SearchEngine:
        # searcher = Searcher(self._parser, self._indexer, model=self.model)
         searcher = Searcher(self._parser, self._indexer, model=self.model)
 
-        return searcher.search(query)
+        return searcher.search3(query)
 
 def main():  # (corpus_path,output_path,stemming,queries,num_docs_to_retrieve):
     config = ConfigClass()
@@ -105,7 +102,7 @@ def main():  # (corpus_path,output_path,stemming,queries,num_docs_to_retrieve):
     arr2=get_all_parquet_files(os.getcwd())
     s=SearchEngine()
     s.build_index_from_parquet(arr2[3])
-    # s.search("Covid")
+    s.search("paper flu")
 
 
 def get_all_parquet_files(dir):

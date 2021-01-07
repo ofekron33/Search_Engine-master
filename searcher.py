@@ -83,10 +83,22 @@ class Searcher:
                             tmp=3
                         else:
                             dist = 1-spatial.distance.cosine(dictVec,queryVec)
-                            if dist>0.7:
-                                relevant_docs[tweet_id] = dist
-
+                            relevant_docs[tweet_id] = dist
+        # trim_relevant_docs=self.trim_relevant(relevant_docs)
         return relevant_docs
+    # def trim_relevant(self,relevant_docs):
+    #     sorted_dict={k:v for k, v in sorted(relevant_docs.items(),key=lambda item:item[1],reverse=True)}
+    #     limit=len(sorted_dict)//(10/3)
+    #     counter=0
+    #     key_list=[]
+    #     for key in sorted_dict.keys():
+    #         if counter<limit:
+    #             key_list.append(key)
+    #             counter+=1
+    #         else:
+    #             break
+    #     new_dic={k:sorted_dict[k] for k in key_list}
+    #     return  new_dic
 
     def average_vector(self, dictionary):
         vector = np.zeros((300,))  ##init matrix [0,0,0,0......0 ->300 time]

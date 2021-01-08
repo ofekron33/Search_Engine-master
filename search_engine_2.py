@@ -22,7 +22,7 @@ class SearchEngine:
         self._config = config
         self._parser = Parse()
         self._indexer = Indexer(config)
-        self.model = KeyedVectors.load_word2vec_format("model0601test1a.bin", binary=True)
+        self.model = config.get_model_url()
 #
 
         self.num_doc=0
@@ -51,13 +51,11 @@ class SearchEngine:
             # index the document data
             self._indexer.add_new_doc(parsed_document)
 
-        utils.save_obj(self._indexer.inverted_idx, "idx_bench")
 
-        utils.save_obj(self._indexer.postingVector, "postingVec")
+
+
         end = time.time()
-        print("time took - " + str(end - start))
 
-        print('Finished parsing and indexing.')
         self._indexer.end_indexer()
     # DO NOT MODIFY THIS SIGNATURE
     # You can change the internal implementation as you see fit.
@@ -94,23 +92,12 @@ class SearchEngine:
             and the last is the least relevant result.
         """
 
-        searcher = Searcher(self._parser, self._indexer, model=self.model)
+        searcher = Searcher(self._parser, self._indexer,self.model)
         return searcher.search2(query)
 import utils
 
 def main():  # (corpus_path,output_path,stemming,queries,num_docs_to_retrieve):
-    config = ConfigClass()
-    r = ReadFile(corpus_path=config.get__corpusPath())
-    #arr1=get_all_parquet_files("D:\Downloads\Data")
-    arr2=get_all_parquet_files(os.getcwd())
-    s=SearchEngine()
-    s.build_index_from_parquet(arr2[3])
-    s.search("Covid flu")
-
-    tmp=3
-    # for i in arr2:
-    #     s.build_index_from_parquet(i)
-    # s.build_index_from_parquet("C:\\Users\\ofekr\\Search_Engine-master\\data\\benchmark_lbls_train.snappy.parquet")
+    pass
 
 
 def get_all_parquet_files(dir):
@@ -118,7 +105,7 @@ def get_all_parquet_files(dir):
     for r, d, f in os.walk(dir):
         for file in f:
             if file.endswith(".parquet"):
-                print(os.path.join(r, file))
+                # print(os.path.join(r, file))
                 arr.append(os.path.join(r, file))
     return arr
 

@@ -26,7 +26,7 @@ class SearchEngine:
         self._indexer = Indexer(config)
         #self.model =KeyedVectors.load_word2vec_format("GoogleNews-vectors-negative300.bin", binary=True, limit= 20000)
         #self.model = KeyedVectors.load_word2vec_format("D:\\Downloads\\modell3.bin", binary=True)
-        self.model = KeyedVectors.load_word2vec_format("model0601test1a.bin", binary=True)
+        self.model = config.get_model_url()
         self.num_doc=0
 
     # DO NOT MODIFY THIS SIGNATURE
@@ -49,17 +49,12 @@ class SearchEngine:
             parsed_document = self._parser.parse_doc(document)
             number_of_documents += 1
             self.num_doc+=1
-            print(number_of_documents)
+
             # index the document data
             self._indexer.add_new_doc(parsed_document)
 
-        utils.save_obj(self._indexer.inverted_idx,"idx_bench")
-
-        utils.save_obj(self._indexer.postingVector,"postingVec")
         end = time.time()
-        print("time took - "+str(end-start))
 
-        print('Finished parsing and indexing.')
         self._indexer.end_indexer()
     # DO NOT MODIFY THIS SIGNATURE
     # You can change the internal implementation as you see fit.
@@ -106,31 +101,7 @@ class SearchEngine:
 
 
 def main():  # (corpus_path,output_path,stemming,queries,num_docs_to_retrieve):
-    config = ConfigClass()
-    r = ReadFile(corpus_path=config.get__corpusPath())
-    #arr1=get_all_parquet_files("D:\Downloads\Data")
-    arr2=get_all_parquet_files(os.getcwd())
-    s=SearchEngine()
-    s.build_index_from_parquet(arr2[3])
-    # s.search("bioweapon")
-    print(s.search("The seasonal flu kills more people every year in the U.S. than COVID-19 has to date"))
-    # query_list = ["Dr. Anthony Fauci wrote in a 2005 paper published in Virology Journal that hydroxychloroquine was effective in treating SARS",
-    #               "The seasonal flu kills more people every year in the U.S. than COVID-19 has to date",
-    #               "The coronavirus pandemic is a cover for a plan to implant trackable microchips and that the Microsoft co-founder Bill Gates is behind it",
-    #               "Herd immunity has been reached",
-    #               "Children are “almost immune from this disease.”"]
-    #
-    # query_nums =[1,2,4,7,8]
-    # for i in range(0,len(query_list)):
-    #     name = "query number " + str(query_nums[i])+".csv"
-    #     num,doc_arr = s.search(query_list[i])
-    #     file = open(name,"w",newline='')
-    #     with file:
-    #         header = ['query_num','tweet_id','content']
-    #         writer = csv.DictWriter(file,fieldnames=header)
-    #         for id in doc_arr:
-    #             full_text = s.indexer.inverted_idx[id][2]
-    #             writer.writerow({'query_num': str(query_nums[i]),'tweet_id': str(id),'content': str(full_text)})
+    pass
 
 
 def get_all_parquet_files(dir):
@@ -138,19 +109,7 @@ def get_all_parquet_files(dir):
     for r, d, f in os.walk(dir):
         for file in f:
             if file.endswith(".parquet"):
-                print(os.path.join(r, file))
+                # print(os.path.join(r, file))
                 arr.append(os.path.join(r, file))
     return arr
 
-    #     #  config = ConfigClass(corpus_path,output_path,stemming)   # while True:
-    #     config = ConfigClass('D:\\Downloads\\Data\\Data', "C:\\Users\\ofekr\\Search_Engine", False)  # while True:
-    #     counter = run_engine(config)
-    #     index_documents(counter, config)
-    #     # freq_dict = index_documents(counter,stemming)
-    #     merge_files(counter, config)
-    #     # num_of_files=merge_files(counter)
-    #     inverted_index = utils.load_inverted_index(config.output_path)  ##output path
-    #     # query = input("Please enter a query: ")
-    #     # k = int(input("Please enter number of docs to retrieve: "))
-    #     # inverted_index = load_index()
-    # # queries=["Donalnd trump"]

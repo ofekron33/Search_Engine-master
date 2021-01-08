@@ -8,7 +8,7 @@ from gensim.models import KeyedVectors
 class Indexer:
     # DO NOT MODIFY THIS SIGNATURE
     # You can change the internal implementation as you see fit.
-    def __init__(self, config):
+    def __init__(self, config=None):
         self.vector_dictionary = {}
         self.inverted_idx = {}
         #self.model = KeyedVectors.load_word2vec_format("GoogleNews-vectors-negative300.bin", binary=True, limit=300000)
@@ -76,7 +76,14 @@ class Indexer:
         Input:
             fn - file name of pickled index.
         """
-        self.inverted_idx = utils.load_obj(fn)
+        diction = utils.load_obj(fn)
+        self.inverted_idx = {}
+        self.postingDict = {}
+        for key in diction.keys():
+            if len(diction[key]) == 2:
+                self.postingDict[key] = diction[key]
+            else:
+                self.inverted_idx[key] = diction[key]
     # DO NOT MODIFY THIS SIGNATURE
     # You can change the internal implementation as you see fit.
     def save_index(self, fn):
@@ -85,7 +92,7 @@ class Indexer:
         Input:
               fn - file name of pickled index.
         """
-        utils.save_obj(fn,"idx_bench")
+        self.merge_dicts()
 
     # feel free to change the signature and/or implementation of this function
     # or drop altogether.
@@ -111,12 +118,9 @@ class Indexer:
             merged_dict[key] = self.inverted_idx[key]
         for key in self.postingDict.keys():
             merged_dict[key] = self.postingDict[key]
-        self.inverted_idx = merged_dict
-        self.postingDict = {}
+        utils.save_obj(merged_dict, "idx_bench")
+
     def end_indexer(self):
-        print(f"the amount of different words in our dict is - {len(self.inverted_idx)}")
-        print(f"the entry in the word 'bioweapon' in our inverted index is - {self.inverted_idx['bioweapon']}")
-        print(f"the entry in tweet number 1291363886478897152 in our posting dict is {self.postingDict['1291363886478897152']}")
         self.merge_dicts()
-        utils.save_obj(self.inverted_idx,"idx_bench")
+
         #utils.save_obj(self.postingVector,"vectors")

@@ -1,17 +1,12 @@
 import math
 import time
-from spellchecker import SpellChecker
 
 import numpy as np
 from scipy import spatial
+
 from ranker import Ranker
 import utils
 from gensim.models import KeyedVectors
-from nltk.corpus import wordnet as wn
-from nltk.corpus import lin_thesaurus as t
-import nltk
-
-#nltk.download('lin_thesaurus')
 
 # DO NOT MODIFY CLASS NAME
 class Searcher:
@@ -22,9 +17,6 @@ class Searcher:
     # MAKE SURE YOU DON'T LOAD A MODEL INTO MEMORY HERE AS THIS IS RUN AT QUERY TIME.
     def __init__(self, parser, indexer, model=None):
         self._parser = parser
-        self.spellcheck=SpellChecker()
-        self.spell_arr=['MI6','lmfao','bbc','5G','IMO','ffs','tv','9th','wuhan','covid','rt','Co2','dr','fauci','CDC','cdc','co2','c02','Dr','faucis','PM','pm','ppp']
-
         self._indexer = indexer
         self._ranker = Ranker()
         self._model = model
@@ -48,13 +40,12 @@ class Searcher:
         query_as_list = self._parser.parse_query(query) ### line 41  override the existing array without adding the query words
         query_as_list1 = self.create_syno_arr(query_as_list)
         query_arr=[]
-        for i in query_as_list.keys():
+        for key in query_as_list.keys():
+            if key not in query_arr:
+                query_arr.append(key)
+        for i in query_as_list1:
             if i not in query_arr:
                 query_arr.append(i)
-        if(len(query_as_list1)>0):
-            for i in query_as_list1:
-                if i not in query_arr:
-                    query_arr.append(i)
 
         relevant_docs = self._relevant_docs_from_posting(query_arr)
         n_relevant = len(relevant_docs)
@@ -69,37 +60,20 @@ class Searcher:
         :param query_as_list: parsed query tokens
         :return: dictionary of relevant documents mapping doc_id to document frequency.
         """
-        zero_vector=np.zeros((300,))
         relevant_docs = {}
         queryVec = self.average_vector(query_as_list)
         for key in query_as_list:
             if key in self._indexer.inverted_idx.keys():
-                arr = self._indexer.inverted_idx[key][1]
+                arr = self._indexer.inverted_idx[key][0]
                 for tup in arr:
-                    if tup[1] not in relevant_docs.keys():
-                        tweet_id = tup[1]
-                        dictVec = self._indexer.inverted_idx[tweet_id][3]
-                        if (np.array_equal(zero_vector, dictVec)):
-                            tmp=3
-                        else:
-                            dist = 1-spatial.distance.cosine(dictVec,queryVec)
-                            relevant_docs[tweet_id] = dist
-        # trim_relevant_docs=self.trim_relevant(relevant_docs)
-        return relevant_docs
-    # def trim_relevant(self,relevant_docs):
-    #     sorted_dict={k:v for k, v in sorted(relevant_docs.items(),key=lambda item:item[1],reverse=True)}
-    #     limit=len(sorted_dict)//(10/3)
-    #     counter=0
-    #     key_list=[]
-    #     for key in sorted_dict.keys():
-    #         if counter<limit:
-    #             key_list.append(key)
+                    if tup not in relevant_docs.keys():
+                        tweet_id = tup
 
-    #             counter+=1
-    #         else:
-    #             break
-    #     new_dic={k:sorted_dict[k] for k in key_list}
-    #     return  new_dic
+                        dictVec = self._indexer.inverted_idx[tweet_id][1]
+                        dist = 1-spatial.distance.cosine(dictVec,queryVec)
+                        relevant_docs[tweet_id] = dist
+
+        return relevant_docs
 
     def average_vector(self, dictionary):
         vector = np.zeros((300,))  ##init matrix [0,0,0,0......0 ->300 time]
@@ -122,7 +96,7 @@ class Searcher:
         arr = []
         for key in dict.keys():
             try:
-                syno_arr = self._model.most_similar(key,topn=6)
+                syno_arr = self._model.most_similar(key,topn=4)
                 for syno in syno_arr:
                     if '@' in syno[0]:
                         continue

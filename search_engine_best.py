@@ -7,12 +7,17 @@ from parser_module import Parse
 from indexer import Indexer
 from searcher import Searcher
 from gensim.models import KeyedVectors
+import csv
 import os
 import utils
 
 
 # DO NOT CHANGE THE CLASS NAME
+
+
+
 class SearchEngine:
+
     # DO NOT MODIFY THIS SIGNATURE
     # You can change the internal implementation, but you must have a parser and an indexer.
     def __init__(self, config=None):
@@ -20,8 +25,8 @@ class SearchEngine:
         self._parser = Parse()
         self._indexer = Indexer(config)
         #self.model =KeyedVectors.load_word2vec_format("GoogleNews-vectors-negative300.bin", binary=True, limit= 20000)
-    #    self.model = KeyedVectors.load_word2vec_format("D:\\Downloads\\word2vec0702C.bin", binary=True)
-        self.model = KeyedVectors.load_word2vec_format("D:\\Downloads\\model0601test1a.bin", binary=True)
+        #self.model = KeyedVectors.load_word2vec_format("D:\\Downloads\\modell3.bin", binary=True)
+        self.model = KeyedVectors.load_word2vec_format("model0601test1a.bin", binary=True)
         self.num_doc=0
 
     # DO NOT MODIFY THIS SIGNATURE
@@ -95,6 +100,11 @@ class SearchEngine:
 
         return searcher.search(query)
 
+    @property
+    def indexer(self):
+        return self._indexer
+
+
 def main():  # (corpus_path,output_path,stemming,queries,num_docs_to_retrieve):
     config = ConfigClass()
     r = ReadFile(corpus_path=config.get__corpusPath())
@@ -102,7 +112,25 @@ def main():  # (corpus_path,output_path,stemming,queries,num_docs_to_retrieve):
     arr2=get_all_parquet_files(os.getcwd())
     s=SearchEngine()
     s.build_index_from_parquet(arr2[3])
-    s.search("Covid flu")
+    # s.search("bioweapon")
+    print(s.search("The seasonal flu kills more people every year in the U.S. than COVID-19 has to date"))
+    # query_list = ["Dr. Anthony Fauci wrote in a 2005 paper published in Virology Journal that hydroxychloroquine was effective in treating SARS",
+    #               "The seasonal flu kills more people every year in the U.S. than COVID-19 has to date",
+    #               "The coronavirus pandemic is a cover for a plan to implant trackable microchips and that the Microsoft co-founder Bill Gates is behind it",
+    #               "Herd immunity has been reached",
+    #               "Children are “almost immune from this disease.”"]
+    #
+    # query_nums =[1,2,4,7,8]
+    # for i in range(0,len(query_list)):
+    #     name = "query number " + str(query_nums[i])+".csv"
+    #     num,doc_arr = s.search(query_list[i])
+    #     file = open(name,"w",newline='')
+    #     with file:
+    #         header = ['query_num','tweet_id','content']
+    #         writer = csv.DictWriter(file,fieldnames=header)
+    #         for id in doc_arr:
+    #             full_text = s.indexer.inverted_idx[id][2]
+    #             writer.writerow({'query_num': str(query_nums[i]),'tweet_id': str(id),'content': str(full_text)})
 
 
 def get_all_parquet_files(dir):

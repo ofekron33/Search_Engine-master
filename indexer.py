@@ -12,10 +12,8 @@ class Indexer:
         self.vector_dictionary = {}
         self.inverted_idx = {}
         #self.model = KeyedVectors.load_word2vec_format("GoogleNews-vectors-negative300.bin", binary=True, limit=300000)
-
-        self.model = KeyedVectors.load_word2vec_format("D:\\Downloads\\model0601test1a.bin", binary=True)
-    #    self.model = KeyedVectors.load_word2vec_format("D:\\Downloads\\word2vec0702C.bin", binary=True)
-
+        #self.model = KeyedVectors.load_word2vec_format("D:\\Downloads\\modell3.bin", binary=True)
+        self.model = KeyedVectors.load_word2vec_format("model0601test1a.bin", binary=True)
         self.postingDict = {}
         self.postingVector = {}
         self.index_word_set = self.model.wv.index2word
@@ -36,17 +34,16 @@ class Indexer:
         max_tf = document.max_tf
         if max_tf == 0:
             return
+
         uniqueCounter = document.unique_words
         #        tweet_length = len(document.full_text)
         for term in document_dictionary.keys():  # in the inverted index we have list of tweet tuples with tf with pointer to appropriate file
             if term not in self.inverted_idx.keys():
-                self.inverted_idx[term] = [[1, -1, document_dictionary[term]],[]]
-                self.inverted_idx[term][1].append((document_dictionary[term] / max_tf, document.tweet_id))
+                self.inverted_idx[term] = [[document.tweet_id]]
+
             else:
-                self.inverted_idx[term][0][0] += 1
-                self.inverted_idx[term][0][2] += document_dictionary[term]
-                self.inverted_idx[term][1].append((document_dictionary[term] / max_tf, document.tweet_id))
-        self.postingDict[document.tweet_id] = (document.term_doc_dictionary, document.max_tf, document.hashtag_arr,self.average_vector(document.term_doc_dictionary))
+                self.inverted_idx[term][0].append(document.tweet_id)
+        self.postingDict[document.tweet_id] = (document.term_doc_dictionary, self.average_vector(document.term_doc_dictionary))
    #     self.postingVector[document.tweet_id] = self.average_vector(document.term_doc_dictionary)
         self.doc_num += 1
 
@@ -106,12 +103,7 @@ class Indexer:
         """
         return self.postingDict[term] if self._is_term_exist(term) else []
 
-    def IDF(self):
 
-        for key in self.inverted_idx.keys():
-            idf = self.doc_num/self.inverted_idx[key][0][0]
-            idf = math.log(idf,2)
-            self.inverted_idx[key][0][1] = idf
 
     def merge_dicts(self):
         merged_dict = {}
@@ -122,7 +114,9 @@ class Indexer:
         self.inverted_idx = merged_dict
         self.postingDict = {}
     def end_indexer(self):
-        self.IDF()
+        print(f"the amount of different words in our dict is - {len(self.inverted_idx)}")
+        print(f"the entry in the word 'bioweapon' in our inverted index is - {self.inverted_idx['bioweapon']}")
+        print(f"the entry in tweet number 1291363886478897152 in our posting dict is {self.postingDict['1291363886478897152']}")
         self.merge_dicts()
         utils.save_obj(self.inverted_idx,"idx_bench")
         #utils.save_obj(self.postingVector,"vectors")

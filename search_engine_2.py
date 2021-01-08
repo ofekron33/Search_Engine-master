@@ -22,8 +22,8 @@ class SearchEngine:
         self._config = config
         self._parser = Parse()
         self._indexer = Indexer(config)
-        self.model = KeyedVectors.load_word2vec_format("D:\\Downloads\\model0601test1a.bin", binary=True)
-#        self.model = KeyedVectors.load_word2vec_format("D:\\Downloads\\word2vec0702C.bin", binary=True)
+        self.model = KeyedVectors.load_word2vec_format("model0601test1a.bin", binary=True)
+#
 
         self.num_doc=0
 

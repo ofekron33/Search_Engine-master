@@ -108,11 +108,7 @@ class Indexer:
 
     def IDF(self):
 
-        number_of_words=self.inverted_idx.keys()
         for key in self.inverted_idx.keys():
-            if(key=="bioweapon"):
-                tmp=22
-                tmp1=self.inverted_idx[key]
             idf = self.doc_num/self.inverted_idx[key][0][0]
             idf = math.log(idf,2)
             self.inverted_idx[key][0][1] = idf

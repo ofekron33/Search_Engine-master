@@ -9,6 +9,7 @@ if __name__ == '__main__':
     import timeit
     import importlib
     import logging
+  #  import xlsxwriter
 
     logging.basicConfig(filename='part_c_tests.log', level=logging.DEBUG,
                         filemode='w', format='%(levelname)s %(asctime)s: %(message)s')
@@ -153,6 +154,19 @@ if __name__ == '__main__':
                     if len(zero_recall_qs) > 0:
                         logging.warning(
                             f"{engine_module}'s recall for the following queries was zero {zero_recall_qs}.")
+               # recall = [metrics.recall_single(q_results_labeled, rel, q_id) for q_id, rel in q2n_relevant.items()]
+               # precision = [metrics.precision(q_results_labeled, True, q_id) for q_id, rel in q2n_relevant.items()]
+               # precision_5 = [metrics.precision_at_n(q_results_labeled, q_id, 5) for q_id, rel in q2n_relevant.items()]
+               # precision_10 = [metrics.precision_at_n(q_results_labeled, q_id, 10) for q_id, rel in q2n_relevant.items()]
+               # precision_50 = [metrics.precision_at_n(q_results_labeled, q_id, 50) for q_id, rel in q2n_relevant.items()]
+               #  Map = [metrics.map(q_results_labeled)]
+               #  d=pd.DataFrame(Map)
+               #  writer = pd.ExcelWriter(engine_module + "_.xlsx", engine='xlsxwriter')
+               #  d.to_excel(writer, sheet_name='Sheet1')
+               #  writer.save()
+
+             #   precision_50 = [metrics.precision_at_n(q_results_labeled, q_id, 50) for q_id, rel in q2n_relevant.items() ]
+          #      Map = [metrics.map(q_results_labeled) for q_id, rel in q2n_relevant.items()]
 
                 if q_results_labeled is not None:
                     # test that MAP > 0

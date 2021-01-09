@@ -1,13 +1,11 @@
 import re
 
 from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
-from document import Document
+
 from math import log
 from document import Document_to_index
 import urllib3
-import spacy
-#from spellchecker import SpellChecker
+
 class Parse:
 
     def __init__(self):

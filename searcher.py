@@ -1,15 +1,14 @@
-import math
+
 import time
 from spellchecker import SpellChecker
 
 import numpy as np
 from scipy import spatial
 from ranker import Ranker
-import utils
-from gensim.models import KeyedVectors
+
 from nltk.corpus import wordnet as wn
 from nltk.corpus import lin_thesaurus as t
-import nltk
+
 
 
 
@@ -71,6 +70,7 @@ class Searcher:
         :param query_as_list: parsed query tokens
         :return: dictionary of relevant documents mapping doc_id to document frequency.
         """
+
         relevant_docs = {}
         queryVec = self.average_vector(query_as_list)
         for key in query_as_list:
@@ -79,9 +79,17 @@ class Searcher:
                 for tup in arr:
                     if tup not in relevant_docs.keys():
                         tweet_id = tup
+                        #dictVec = 0
+                        if self._indexer.postingDict[tweet_id][2] == 0:
+                            dictVec = self.average_vector(self._indexer.postingDict[tweet_id][0])
 
-                        dictVec = self._indexer.postingDict[tweet_id][1]
+                        else:
+                            dictVec = self._indexer.postingDict[tweet_id][1]
+
+                        # dictVec = self._indexer.postingDict[tweet_id][1]
+
                         dist = 1 - spatial.distance.cosine(dictVec, queryVec)
+
                         relevant_docs[tweet_id] = dist
 
         return relevant_docs

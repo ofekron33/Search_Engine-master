@@ -1,10 +1,9 @@
 import numpy as np
 import  utils
-import math
-from document import Document_to_index
+
 # DO NOT MODIFY CLASS NAME
 from gensim.models import KeyedVectors
-from configuration import ConfigClass
+
 class Indexer:
     # DO NOT MODIFY THIS SIGNATURE
     # You can change the internal implementation as you see fit.
@@ -44,8 +43,16 @@ class Indexer:
 
             else:
                 self.inverted_idx[term][0].append(document.tweet_id)
-        self.postingDict[document.tweet_id] = (document.term_doc_dictionary, self.average_vector(document.term_doc_dictionary))
+        dicLen = len(document_dictionary)
+        if dicLen >=10:
+            self.postingDict[document.tweet_id] = [document.term_doc_dictionary, self.average_vector(document.term_doc_dictionary),1]
+        else:
+            self.postingDict[document.tweet_id] = [document.term_doc_dictionary,0, 0]
+        # self.postingDict[document.tweet_id] = [document.term_doc_dictionary, 0]
+        # if len(self.postingDict[document.tweet_id][0]) >= 10 :
+        #     self.postingDict[document.tweet_id][1] = self.average_vector(document.term_doc_dictionary)
    #     self.postingVector[document.tweet_id] = self.average_vector(document.term_doc_dictionary)
+   #      self.postingDict[document.tweet_id] = [document.term_doc_dictionary, self.average_vector(document.term_doc_dictionary)]
         self.doc_num += 1
 
 
@@ -58,17 +65,7 @@ class Indexer:
             return np.mean(self.model[words], axis=0)
         else:
             return np.zeros((300,))
-        # self.counter+=1
-        # try:
-        #     for word in dictionary:
-        #         if word.lower() in self.vector_dictionary:
-        #             vector=np.add(vector,self.vector_dictionary[word])
-        #         elif word.lower() in self.index_word_set:
-        #             self.vector_dictionary[word]=self.model[word]
-        #             vector = np.add(vector, self.model[word])  ##adding vectors
-        # except:
-        #     tmp = 0
-        # return vector
+
     # DO NOT MODIFY THIS SIGNATURE
     # You can change the internal implementation as you see fit.
     def load_index(self, fn):

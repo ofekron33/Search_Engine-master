@@ -1,15 +1,14 @@
 import time
-import searcher
+
 import pandas as pd
-from reader import ReadFile
-from configuration import ConfigClass
+
 from parser_module import Parse
 from gensim.models import KeyedVectors
 from indexer import Indexer
 from searcher import Searcher
 
 import os
-import timeit
+
 
 
 
@@ -45,7 +44,7 @@ class SearchEngine:
             parsed_document = self._parser.parse_doc(document)
             number_of_documents += 1
             self.num_doc += 1
-            print(number_of_documents)
+
             # index the document data
             self._indexer.add_new_doc(parsed_document)
 

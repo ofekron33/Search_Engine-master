@@ -22,9 +22,7 @@ class SearchEngine:
         self._config = config
         self._parser = Parse()
         self._indexer = Indexer(config)
-        self.model = config.get_model_url()
-#
-
+        self.model = config.get_download_model()
         self.num_doc=0
 
     # DO NOT MODIFY THIS SIGNATURE

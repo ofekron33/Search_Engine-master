@@ -16,17 +16,15 @@ class SearchEngine:
 
     # DO NOT MODIFY THIS SIGNATURE
     # You can change the internal implementation, but you must have a parser and an indexer.
-    def __init__(self, config=None):
+    def __init__(self, config):
         self._config = config
         self._parser = Parse()
         #self.model = KeyedVectors.load_word2vec_format("GoogleNews-vectors-negative300.bin", binary=True, limit=200000)
-    #    self.model = KeyedVectors.load_word2vec_format("D:\\Downloads\\modell3.bin", binary=True)
-        self.model = config.get_model_url()
+        self.model = config.get_download_model()
 
         self._indexer = Indexer(config)
 
         self.num_doc=0
-        self.efk=0;
     # DO NOT MODIFY THIS SIGNATURE
     # You can change the internal implementation as you see fit.
     def build_index_from_parquet(self, fn):

@@ -1,7 +1,7 @@
 class ConfigClass:
     def __init__(self):
         # link to a zip file in google drive with your pretrained model
-        self._model_url = "https://drive.google.com/file/d/1BHCHx0rWwe0JWbvSmfW7Y9ZjuUWNKeaO/view"
+        self._model_url = "https://drive.google.com/file/d/1GG7rOfs4S52ZWsjlc_LVgvGVRH9Chu8G/view?usp=sharing"
         # False/True flag indicating whether the testing system will download
         # and overwrite the existing model files. In other words, keep this as
         # False until you update the model, submit with True to download
@@ -17,7 +17,7 @@ class ConfigClass:
         self.toStem = False
         self.google_news_vectors_negative300_path = '../../../../GoogleNews-vectors-negative300.bin'
         self.glove_twitter_27B_25d_path = '../../../../glove.twitter.27B.25d.txt'
-
+        
         print('Project was created successfully..')
 
     def get__corpusPath(self):

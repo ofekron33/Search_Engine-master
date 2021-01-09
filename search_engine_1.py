@@ -20,7 +20,7 @@ class SearchEngine:
         self._config = config
         self._parser = Parse()
         #self.model = KeyedVectors.load_word2vec_format("GoogleNews-vectors-negative300.bin", binary=True, limit=200000)
-        self.model = config.get_download_model()
+        self.model = KeyedVectors.load_word2vec_format("model\\model0601test1a.bin", binary=True)
 
         self._indexer = Indexer(config)
 
@@ -73,8 +73,7 @@ class SearchEngine:
         This is where you would load models like word2vec, LSI, LDA, etc. and
         assign to self._model, which is passed on to the searcher at query time.
         """
-        pass
-
+        self.model=KeyedVectors.load_word2vec_format("model\\model0601test1a.bin", binary=True)
         # DO NOT MODIFY THIS SIGNATURE
         # You can change the internal implementation as you see fit.
 

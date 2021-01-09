@@ -4,7 +4,7 @@ import math
 from document import Document_to_index
 # DO NOT MODIFY CLASS NAME
 from gensim.models import KeyedVectors
-
+from configuration import ConfigClass
 class Indexer:
     # DO NOT MODIFY THIS SIGNATURE
     # You can change the internal implementation as you see fit.
@@ -14,10 +14,10 @@ class Indexer:
         #self.model = KeyedVectors.load_word2vec_format("GoogleNews-vectors-negative300.bin", binary=True, limit=300000)
         #self.model = KeyedVectors.load_word2vec_format("D:\\Downloads\\modell3.bin", binary=True)
        # self.model = KeyedVectors.load_word2vec_format("model0601test1a.bin", binary=True)
-        self.model=config.get_download_model()
+        self.model=KeyedVectors.load_word2vec_format("model\\model0601test1a.bin", binary=True)
         self.postingDict = {}
         self.postingVector = {}
-        self.index_word_set = self.get_download_model().wv.index2word
+        self.index_word_set = self.model.wv.index2word
         self.config = config
         self.doc_num=0
         self.counter = 0

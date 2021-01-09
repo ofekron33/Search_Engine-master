@@ -22,7 +22,7 @@ class SearchEngine:
         self._config = config
         self._parser = Parse()
         self._indexer = Indexer(config)
-        self.model = config.get_download_model()
+        self.model = KeyedVectors.load_word2vec_format("model\\model0601test1a.bin", binary=True)
         self.num_doc=0
 
     # DO NOT MODIFY THIS SIGNATURE

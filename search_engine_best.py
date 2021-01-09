@@ -26,7 +26,7 @@ class SearchEngine:
         self._indexer = Indexer(config=None)
         #self.model =KeyedVectors.load_word2vec_format("GoogleNews-vectors-negative300.bin", binary=True, limit= 20000)
         #self.model = KeyedVectors.load_word2vec_format("D:\\Downloads\\modell3.bin", binary=True)
-        self.model = config.get_download_model()
+        self.model = KeyedVectors.load_word2vec_format("model\\model0601test1a.bin", binary=True)
         self.num_doc=0
 
     # DO NOT MODIFY THIS SIGNATURE

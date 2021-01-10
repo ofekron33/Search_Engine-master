@@ -1,9 +1,9 @@
 import numpy as np
-import  utils
-
+import utils
+import configuration
 # DO NOT MODIFY CLASS NAME
 from gensim.models import KeyedVectors
-
+import os
 class Indexer:
     # DO NOT MODIFY THIS SIGNATURE
     # You can change the internal implementation as you see fit.
@@ -13,12 +13,14 @@ class Indexer:
         #self.model = KeyedVectors.load_word2vec_format("GoogleNews-vectors-negative300.bin", binary=True, limit=300000)
         #self.model = KeyedVectors.load_word2vec_format("D:\\Downloads\\modell3.bin", binary=True)
        # self.model = KeyedVectors.load_word2vec_format("model0601test1a.bin", binary=True)
-        self.model=KeyedVectors.load_word2vec_format("model\\model0601test1a.bin", binary=True)
+        self.model =config._model
+
+
         self.postingDict = {}
         self.postingVector = {}
         self.index_word_set = self.model.wv.index2word
         self.config = config
-        self.doc_num=0
+        self.doc_num = 0
         self.counter = 0
     # DO NOT MODIFY THIS SIGNATURE
     # You can change the internal implementation as you see fit.
@@ -44,7 +46,7 @@ class Indexer:
             else:
                 self.inverted_idx[term][0].append(document.tweet_id)
         dicLen = len(document_dictionary)
-        if dicLen >=10:
+        if dicLen >=12:
             self.postingDict[document.tweet_id] = [document.term_doc_dictionary, self.average_vector(document.term_doc_dictionary),1]
         else:
             self.postingDict[document.tweet_id] = [document.term_doc_dictionary,0, 0]
@@ -116,7 +118,8 @@ class Indexer:
             merged_dict[key] = self.inverted_idx[key]
         for key in self.postingDict.keys():
             merged_dict[key] = self.postingDict[key]
-        utils.save_obj(merged_dict, "inverted_index")
+        utils.save_obj(merged_dict, "idx_bench")
+
 
     def end_indexer(self):
         self.merge_dicts()

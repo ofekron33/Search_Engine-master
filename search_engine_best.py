@@ -7,26 +7,20 @@ from indexer import Indexer
 from searcher import Searcher
 from gensim.models import KeyedVectors
 
-import os
 
 
 # DO NOT CHANGE THE CLASS NAME
-
-
-
 class SearchEngine:
 
     # DO NOT MODIFY THIS SIGNATURE
     # You can change the internal implementation, but you must have a parser and an indexer.
-    def __init__(self, config=None):
+    def __init__(self, config):
         self._config = config
         self._parser = Parse()
-        self._indexer = Indexer(config=None)
-        #self.model =KeyedVectors.load_word2vec_format("GoogleNews-vectors-negative300.bin", binary=True, limit= 20000)
-        #self.model = KeyedVectors.load_word2vec_format("D:\\Downloads\\modell3.bin", binary=True)
-        self.model = KeyedVectors.load_word2vec_format("model\\model0601test1a.bin", binary=True)
-        self.num_doc=0
+        self.model =config._model
+        self._indexer = Indexer(config)
 
+        self.num_doc=0
     # DO NOT MODIFY THIS SIGNATURE
     # You can change the internal implementation as you see fit.
     def build_index_from_parquet(self, fn):
@@ -51,6 +45,9 @@ class SearchEngine:
             # index the document data
             self._indexer.add_new_doc(parsed_document)
 
+
+
+
         end = time.time()
 
         self._indexer.end_indexer()
@@ -67,36 +64,27 @@ class SearchEngine:
     # DO NOT MODIFY THIS SIGNATURE
     # You can change the internal implementation as you see fit.
     def load_precomputed_model(self, model_dir=None):
-        """
-        Loads a pre-computed model (or models) so we can answer queries.
-        This is where you would load models like word2vec, LSI, LDA, etc. and 
-        assign to self._model, which is passed on to the searcher at query time.
-        """
 
-
+       # return KeyedVectors.load_word2vec_format(os.path.join(model_dir,'model0601test1a.bin'), binary=True)
+        pass
         # DO NOT MODIFY THIS SIGNATURE
         # You can change the internal implementation as you see fit.
 
     def search(self, query):
-        """ 
-        Executes a query over an existing index and returns the number of 
+        """
+        Executes a query over an existing index and returns the number of
         relevant docs and an ordered list of search results.
         Input:
             query - string.
         Output:
-            A tuple containing the number of relevant search results, and 
-            a list of tweet_ids where the first element is the most relavant 
+            A tuple containing the number of relevant search results, and
+            a list of tweet_ids where the first element is the most relavant
             and the last is the least relevant result.
         """
        # searcher = Searcher(self._parser, self._indexer, model=self.model)
-        searcher = Searcher(self._parser, self._indexer, model=self.model)
+        searcher = Searcher(self._parser,  self._indexer, self.model)
 
         return searcher.search(query)
-
-    @property
-    def indexer(self):
-        return self._indexer
-
 
 def main():  # (corpus_path,output_path,stemming,queries,num_docs_to_retrieve):
     pass
@@ -111,3 +99,15 @@ def get_all_parquet_files(dir):
                 arr.append(os.path.join(r, file))
     return arr
 
+    #     #  config = ConfigClass(corpus_path,output_path,stemming)   # while True:
+    #     config = ConfigClass('D:\\Downloads\\Data\\Data', "C:\\Users\\ofekr\\Search_Engine", False)  # while True:
+    #     counter = run_engine(config)
+    #     index_documents(counter, config)
+    #     # freq_dict = index_documents(counter,stemming)
+    #     merge_files(counter, config)
+    #     # num_of_files=merge_files(counter)
+    #     inverted_index = utils.load_inverted_index(config.output_path)  ##output path
+    #     # query = input("Please enter a query: ")
+    #     # k = int(input("Please enter number of docs to retrieve: "))
+    #     # inverted_index = load_index()
+    # # queries=["Donalnd trump"]

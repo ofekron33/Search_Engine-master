@@ -8,8 +8,6 @@ from searcher import Searcher
 from gensim.models import KeyedVectors
 import os
 
-
-
 # DO NOT CHANGE THE CLASS NAME
 class SearchEngine:
 
@@ -19,8 +17,8 @@ class SearchEngine:
         self._config = config
         self._parser = Parse()
         #self.model = KeyedVectors.load_word2vec_format("GoogleNews-vectors-negative300.bin", binary=True, limit=200000)
-        self.model = KeyedVectors.load_word2vec_format("model\\model0601test1a.bin", binary=True)
-
+        self.model = self.load_precomputed_model(config._model_dir)
+        config.set_model(self.model)
         self._indexer = Indexer(config)
 
         self.num_doc=0
@@ -67,13 +65,7 @@ class SearchEngine:
     # DO NOT MODIFY THIS SIGNATURE
     # You can change the internal implementation as you see fit.
     def load_precomputed_model(self, model_dir=None):
-        """
-        Loads a pre-computed model (or models) so we can answer queries.
-        This is where you would load models like word2vec, LSI, LDA, etc. and
-        assign to self._model, which is passed on to the searcher at query time.
-        """
-        self.model=KeyedVectors.load_word2vec_format("model\\model0601test1a.bin", binary=True)
-        # DO NOT MODIFY THIS SIGNATURE
+        return KeyedVectors.load_word2vec_format(os.path.join(model_dir, 'model0601test1a.bin'), binary=True)
         # You can change the internal implementation as you see fit.
 
     def search(self, query):
@@ -94,16 +86,13 @@ class SearchEngine:
 
 def main():  # (corpus_path,output_path,stemming,queries,num_docs_to_retrieve):
     pass
-
-
-def get_all_parquet_files(dir):
-    arr=[]
-    for r, d, f in os.walk(dir):
-        for file in f:
-            if file.endswith(".parquet"):
-                # print(os.path.join(r, file))
-                arr.append(os.path.join(r, file))
-    return arr
+# def get_model_file(dir):
+#     arr=[]
+#     for r, d, f in os.walk(dir):
+#         for file in f:
+#             if file.endswith("model0601test1a.bin"):
+#                 tmp=arr.append(os.path.join(r, file))
+#     return path
 
     #     #  config = ConfigClass(corpus_path,output_path,stemming)   # while True:
     #     config = ConfigClass('D:\\Downloads\\Data\\Data', "C:\\Users\\ofekr\\Search_Engine", False)  # while True:

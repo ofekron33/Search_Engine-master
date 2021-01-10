@@ -3,12 +3,9 @@ import time
 import pandas as pd
 
 from parser_module import Parse
-from gensim.models import KeyedVectors
 from indexer import Indexer
 from searcher import Searcher
-
-import os
-
+from gensim.models import KeyedVectors
 
 
 
@@ -17,13 +14,14 @@ class SearchEngine:
 
     # DO NOT MODIFY THIS SIGNATURE
     # You can change the internal implementation, but you must have a parser and an indexer.
-    def __init__(self, config=None):
+    def __init__(self, config):
         self._config = config
         self._parser = Parse()
+        #self.model = KeyedVectors.load_word2vec_format("GoogleNews-vectors-negative300.bin", binary=True, limit=200000)
+        self.model =config._model
         self._indexer = Indexer(config)
-        self.model = KeyedVectors.load_word2vec_format("model\\model0601test1a.bin", binary=True)
-        self.num_doc=0
 
+        self.num_doc=0
     # DO NOT MODIFY THIS SIGNATURE
     # You can change the internal implementation as you see fit.
     def build_index_from_parquet(self, fn):
@@ -43,7 +41,7 @@ class SearchEngine:
             # parse the document
             parsed_document = self._parser.parse_doc(document)
             number_of_documents += 1
-            self.num_doc += 1
+            self.num_doc+=1
 
             # index the document data
             self._indexer.add_new_doc(parsed_document)
@@ -67,14 +65,8 @@ class SearchEngine:
     # DO NOT MODIFY THIS SIGNATURE
     # You can change the internal implementation as you see fit.
     def load_precomputed_model(self, model_dir=None):
-        """
-        Loads a pre-computed model (or models) so we can answer queries.
-        This is where you would load models like word2vec, LSI, LDA, etc. and
-        assign to self._model, which is passed on to the searcher at query time.
-        """
         pass
-
-        # DO NOT MODIFY THIS SIGNATURE
+    # DO NOT MODIFY THIS SIGNATURE
         # You can change the internal implementation as you see fit.
 
     def search(self, query):
@@ -88,10 +80,10 @@ class SearchEngine:
             a list of tweet_ids where the first element is the most relavant
             and the last is the least relevant result.
         """
+       # searcher = Searcher(self._parser, self._indexer, model=self.model)
+        searcher = Searcher(self._parser,  self._indexer, self.model)
 
-        searcher = Searcher(self._parser, self._indexer,self.model)
         return searcher.search2(query)
-import utils
 
 def main():  # (corpus_path,output_path,stemming,queries,num_docs_to_retrieve):
     pass

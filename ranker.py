@@ -1,5 +1,3 @@
-# you can change whatever you want in this module, just make sure it doesn't 
-# break the searcher module
 class Ranker:
     def __init__(self):
         pass

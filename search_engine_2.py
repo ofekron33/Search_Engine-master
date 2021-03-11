@@ -9,21 +9,15 @@ from gensim.models import KeyedVectors
 
 
 
-# DO NOT CHANGE THE CLASS NAME
 class SearchEngine:
 
-    # DO NOT MODIFY THIS SIGNATURE
-    # You can change the internal implementation, but you must have a parser and an indexer.
     def __init__(self, config):
         self._config = config
         self._parser = Parse()
-        #self.model = KeyedVectors.load_word2vec_format("GoogleNews-vectors-negative300.bin", binary=True, limit=200000)
         self.model =config._model
         self._indexer = Indexer(config)
 
         self.num_doc=0
-    # DO NOT MODIFY THIS SIGNATURE
-    # You can change the internal implementation as you see fit.
     def build_index_from_parquet(self, fn):
         """
         Reads parquet file and passes it to the parser, then indexer.
@@ -52,8 +46,6 @@ class SearchEngine:
         end = time.time()
 
         self._indexer.end_indexer()
-    # DO NOT MODIFY THIS SIGNATURE
-    # You can change the internal implementation as you see fit.
     def load_index(self, fn):
         """
         Loads a pre-computed index (or indices) so we can answer queries.
@@ -62,12 +54,9 @@ class SearchEngine:
         """
         self._indexer.load_index(fn)
 
-    # DO NOT MODIFY THIS SIGNATURE
-    # You can change the internal implementation as you see fit.
+
     def load_precomputed_model(self, model_dir=None):
         pass
-    # DO NOT MODIFY THIS SIGNATURE
-        # You can change the internal implementation as you see fit.
 
     def search(self, query):
         """
@@ -85,7 +74,7 @@ class SearchEngine:
 
         return searcher.search2(query)
 
-def main():  # (corpus_path,output_path,stemming,queries,num_docs_to_retrieve):
+def main(): 
     pass
 
 
@@ -98,15 +87,3 @@ def get_all_parquet_files(dir):
                 arr.append(os.path.join(r, file))
     return arr
 
-    #     #  config = ConfigClass(corpus_path,output_path,stemming)   # while True:
-    #     config = ConfigClass('D:\\Downloads\\Data\\Data', "C:\\Users\\ofekr\\Search_Engine", False)  # while True:
-    #     counter = run_engine(config)
-    #     index_documents(counter, config)
-    #     # freq_dict = index_documents(counter,stemming)
-    #     merge_files(counter, config)
-    #     # num_of_files=merge_files(counter)
-    #     inverted_index = utils.load_inverted_index(config.output_path)  ##output path
-    #     # query = input("Please enter a query: ")
-    #     # k = int(input("Please enter number of docs to retrieve: "))
-    #     # inverted_index = load_index()
-    # # queries=["Donalnd trump"]

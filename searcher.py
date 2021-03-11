@@ -12,14 +12,9 @@ from nltk.corpus import lin_thesaurus as t
 
 
 
-# DO NOT MODIFY CLASS NAME
+
 
 class Searcher:
-    # DO NOT MODIFY THIS SIGNATURE
-    # You can change the internal implementation as you see fit. The model
-    # parameter allows you to pass in a precomputed model that is already in
-    # memory for the searcher to use such as LSI, LDA, Word2vec models.
-    # MAKE SURE YOU DON'T LOAD A MODEL INTO MEMORY HERE AS THIS IS RUN AT QUERY TIME.
     def __init__(self, parser, indexer, model=None):
         self._parser = parser
         self.spellcheck=SpellChecker()
@@ -31,8 +26,6 @@ class Searcher:
         self.index_word_set = self._model.wv.index2word
         self.vector_dictionary = {}
 
-    # DO NOT MODIFY THIS SIGNATURE
-    # You can change the internal implementation as you see fit.
     def search(self, query, k=None):
         """
         Executes a query over an existing index and returns the number of
@@ -59,11 +52,7 @@ class Searcher:
         ranked_doc_ids = Ranker.rank_relevant_docs(relevant_docs)
         return n_relevant, ranked_doc_ids
 
-    # feel free to change the signature and/or implementation of this function
-    # or drop altogether.
 
-    # feel free to change the signature and/or implementation of this function
-    # or drop altogether.
     def _relevant_docs_from_posting(self, query_as_list):
         """
         This function loads the posting list and count the amount of relevant documents per term.

@@ -10,7 +10,6 @@ class Parse:
 
     def __init__(self):
         self.counter=0
- #       self.spellcheck=SpellChecker()
   #      self.spell_arr=['CDCs','MI6','lmfao','bbc','5G','IMO','ffs','tv','9th','wuhan','covid','rt','Co2','dr','fauci','CDC','cdc','co2','c02','Dr','faucis','PM','pm','ppp']
         self.stop_words = frozenset(stopwords.words('english'))
         self.added_stop_words=["I","The","rT","RT","rt","http","https",'t.co'," ","","twitter.com","-","www","_","&amp","##","###","####","#####","19"]

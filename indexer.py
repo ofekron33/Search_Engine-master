@@ -1,18 +1,12 @@
 import numpy as np
 import utils
 import configuration
-# DO NOT MODIFY CLASS NAME
 from gensim.models import KeyedVectors
 import os
 class Indexer:
-    # DO NOT MODIFY THIS SIGNATURE
-    # You can change the internal implementation as you see fit.
     def __init__(self, config):
         self.vector_dictionary = {}
         self.inverted_idx = {}
-        #self.model = KeyedVectors.load_word2vec_format("GoogleNews-vectors-negative300.bin", binary=True, limit=300000)
-        #self.model = KeyedVectors.load_word2vec_format("D:\\Downloads\\modell3.bin", binary=True)
-       # self.model = KeyedVectors.load_word2vec_format("model0601test1a.bin", binary=True)
         self.model =config._model
 
 
@@ -50,11 +44,6 @@ class Indexer:
             self.postingDict[document.tweet_id] = [document.term_doc_dictionary, self.average_vector(document.term_doc_dictionary),1]
         else:
             self.postingDict[document.tweet_id] = [document.term_doc_dictionary,0, 0]
-        # self.postingDict[document.tweet_id] = [document.term_doc_dictionary, 0]
-        # if len(self.postingDict[document.tweet_id][0]) >= 10 :
-        #     self.postingDict[document.tweet_id][1] = self.average_vector(document.term_doc_dictionary)
-   #     self.postingVector[document.tweet_id] = self.average_vector(document.term_doc_dictionary)
-   #      self.postingDict[document.tweet_id] = [document.term_doc_dictionary, self.average_vector(document.term_doc_dictionary)]
         self.doc_num += 1
 
 
@@ -68,8 +57,6 @@ class Indexer:
         else:
             return np.zeros((300,))
 
-    # DO NOT MODIFY THIS SIGNATURE
-    # You can change the internal implementation as you see fit.
     def load_index(self, fn):
         """
         Loads a pre-computed index (or indices) so we can answer queries.
@@ -84,8 +71,6 @@ class Indexer:
                 self.postingDict[key] = diction[key]
             else:
                 self.inverted_idx[key] = diction[key]
-    # DO NOT MODIFY THIS SIGNATURE
-    # You can change the internal implementation as you see fit.
     def save_index(self, fn):
         """
         Saves a pre-computed index (or indices) so we can save our work.
@@ -94,16 +79,12 @@ class Indexer:
         """
         self.merge_dicts()
 
-    # feel free to change the signature and/or implementation of this function
-    # or drop altogether.
     def _is_term_exist(self, term):
         """
         Checks if a term exist in the dictionary.
         """
         return term in self.postingDict
 
-    # feel free to change the signature and/or implementation of this function
-    # or drop altogether.
     def get_term_posting_list(self, term):
         """
         Return the posting list from the index for a term.
@@ -124,4 +105,3 @@ class Indexer:
     def end_indexer(self):
         self.merge_dicts()
 
-        #utils.save_obj(self.postingVector,"vectors")

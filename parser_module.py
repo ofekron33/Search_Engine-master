@@ -10,7 +10,6 @@ class Parse:
 
     def __init__(self):
         self.counter=0
-  #      self.spell_arr=['CDCs','MI6','lmfao','bbc','5G','IMO','ffs','tv','9th','wuhan','covid','rt','Co2','dr','fauci','CDC','cdc','co2','c02','Dr','faucis','PM','pm','ppp']
         self.stop_words = frozenset(stopwords.words('english'))
         self.added_stop_words=["I","The","rT","RT","rt","http","https",'t.co'," ","","twitter.com","-","www","_","&amp","##","###","####","#####","19"]
         self.check=0
@@ -54,7 +53,6 @@ class Parse:
                 index=index+1
                 continue
             elif (terms[index][0] == '@' and len(terms[index])>1):  # @rule
-            #   self.enter_dic(terms[index])
                     index = index + 1
                     continue
             elif (terms[index][0] == '#'):  # #rule
@@ -85,10 +83,8 @@ class Parse:
             elif (len(terms[index])<=2):
                     index+=1
             else:
-          #      w=self.test(terms[index])
                 self.enter_dic(terms[index])
                 index = index + 1
-        # return terms
 
     def parse_doc(self, doc_as_list):
         """
@@ -125,9 +121,7 @@ class Parse:
         quote_url = doc_as_list[7]
 
         doc_length =len(full_text)
-       # document = Document(tweet_id, tweet_date, full_text, url, retweet_text, retweet_url, quote_text,quote_url, term_dict, doc_length)
         document_to_index= Document_to_index(tweet_id,self.dic,max_tf,unique_words,doc_length,self.hashtag_arr)
-        #print(str(self.counter)+",",self.hashtag_arr)
         return document_to_index
 
     def parse_numbers(self,index, next_index):
@@ -195,7 +189,6 @@ class Parse:
         length = len(string)
         while (length > 0):
             c, k = best_match(length)
-            #   assert c == cost[length]
             res.append(string[length - k:length])
             length = length - k
         word = " ".join(reversed(res))
@@ -212,14 +205,7 @@ class Parse:
         forth_strip = re.sub('[^A-Za-z0-9@#_$%]+', ' ', third_strip)
         return forth_strip
 
-    # def handle_full_text(self,full_text): ##removes url from full_text and check if all of the text in caps lock.
-    #     pattern = re.compile("(?P<url>https?://[^\s]+)", re.S)
-    #     full_text_without_url=re.sub(pattern,"",full_text)
-    #     all_uppercase_text= bool(re.match(r'[a-z\s]+$', full_text_without_url)) ##if all text is uppercase lower it.
-    #     if (all_uppercase_text == False):
-    #         full_text_without_url.lower()
-    #     self.parse_sentence(full_text_without_url)
-    #     return full_text_without_url
+
 
     def enter_dic(self,term):
         if(term.lower() not in self.stop_words or term.lower() not in self.added_stop_words):
@@ -235,10 +221,6 @@ class Parse:
               """
         parsed_url = urllib3.util.parse_url(url)
         arr = []
-        # pattern = re.compile("(?P<url>https?://[^\s]+)", re.S)
-        # u = re.findall("(?P<url>https?://[^\s]+)", url)
-        # for match in u:
-        #    tok_url = self.parse_url(match)
         arr.append(parsed_url.scheme)  # https
         h = parsed_url.host
         if (h is not None):
@@ -263,13 +245,11 @@ class Parse:
                             arr.append(j)
                 else:
                     arr.append(i)
-            #     if (i not in self.stop_words):
 
         q = parsed_url.query
         if (q is not None):
             query = parsed_url.query.split('=')
             for i in query:
-                #    if (i not in self.stop_words):
                 arr.append(i)
         return arr
     def parse_query(self, text):

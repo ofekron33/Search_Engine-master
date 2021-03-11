@@ -19,3 +19,6 @@ class Ranker:
 
         return [d[0] for d in ranked_results]
 
+
+    
+    

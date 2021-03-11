@@ -16,8 +16,8 @@ class Indexer:
         self.config = config
         self.doc_num = 0
         self.counter = 0
-    # DO NOT MODIFY THIS SIGNATURE
-    # You can change the internal implementation as you see fit.
+  
+
     def add_new_doc(self, document):
         """
         This function perform indexing process for a document object.
